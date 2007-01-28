@@ -1,3 +1,5 @@
+#summary Definerer hvilke vedligeholdelsesopgaver der er for bbcd.
+
 =Vedligeholdelsesopgaver for bbcd=
 Dokumentet beskriver hvilke vedligeholdelsesopgaver der for bbcd.
 
