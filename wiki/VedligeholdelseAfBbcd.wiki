@@ -1,9 +1,9 @@
-#summary Vedligeholdelsesopgaver for bbcd
+=Vedligeholdelsesopgaver for bbcd=
 
-- Turneringer
+==Turneringer==
 En turnering defineres ved en halv- eller hel-sæson som spillets periode dækker over.
 
 Kolonnen 'aktuelturnering' i tabellen 'turnering' opdateres for at afspejle hvilken der er den aktuelle turnering.
 
-- Licensklasser
+==Licensklasser==
 DBTU definerer før hver sæson hvordan licensklasserne skal inddeles. Tabellerne 'aldersklasse' og 'licensklasse' skal opdateres tilsvarende.
