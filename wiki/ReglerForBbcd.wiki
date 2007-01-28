@@ -6,7 +6,7 @@
 Bordtennisligaen går kort fortalt ud på at deltagerne kan sammensætte et hold af spillere fra DBTU ranglisten. Man har 1 million kr til at købe spillere for og spillernes pris er fastsat efter en tabel. Afhængig af, om spillerne på det sammensatte hold stiger eller falder i rating, stiger og falder deltagerens samlet kapital. Den samlet kapital afgør deltagerens placering i spillet.
 
 ==Mål==
-  * Målet med spillet er at få sammensat et hold, hvis spillere samler flest penge sammen.
+Målet med spillet er at få sammensat et hold, hvis spillere samler flest penge sammen.
 Det handler altså om at finde de spillere som der potentielt er mest fremgang i, den pågældende sæson og desuden om det bedst kan betale sig at købe dyre eller billige spillere. Dyre spillere vil give større bonus (hvis de vel og mærke spiller godt). Ved at købe billige får man ikke så stor bonus, når de spiller godt, til gengæld vil man ha’ mulighed for at tjene penge på renter af det beløb, der var i overskud. 
 
 ==Tilmeldinger==
