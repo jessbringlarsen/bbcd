@@ -24,7 +24,7 @@ Der skal som minimum være to ungdomsspillere på holdet, dvs. spillere under 18
 Der må maksimalt være to spillere fra samme klub på holdet.
 Man starter med et beløb på 1 million kroner til at købe de 10 spillere for. Spillernes pris fastlægges efter klasse/ratingtal:
 
-|| Klasse || ratingtal || Pris( i 2000) ||
+|| Klasse || Ratingtal || Pris( i 2000) ||
 || Elite || 2300+ || 300 ||
 || Klasse 1 || 2000-2299 || 250 ||
 || Klasse 2 || 1700-1999 || 200 ||
