@@ -1,4 +1,5 @@
 =Vedligeholdelsesopgaver for bbcd=
+Dokumentet beskriver hvilke vedligeholdelsesopgaver der for bbcd.
 
 ==Turneringer==
 En turnering defineres ved en halv- eller hel-sæson som spillets periode dækker over.
