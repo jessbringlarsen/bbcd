@@ -36,7 +36,10 @@ Man starter med et beløb på 1 million kroner til at købe de 10 spillere for. 
   * Alle deltagere har som udgangspunkt 1 million kr.
   * Det antal kroner, som tilføjes eller fratrækkes deltagerne, afgøres ud fra summen af det antal rating point som spillerne har indtjent siden sidste rating opdatering.
   * (Der gives bonus afhængig af hvor mange kampe spillerne har spillet.)
-  * (Der gives bonus afhængig af en spillers formkurve. I såfald en spiller har positiv stigning i ratingtal i to eller flere opdateringer i træk, gives der et bonus beløb på: 1000kr * antal ’positive opdateringer’ * (spillerens rating)/1000.)
+  * (Der gives bonus afhængig af en spillers formkurve. I såfald en spiller har positiv stigning i ratingtal i to eller flere opdateringer i træk, gives der et bonus beløb på: 
+{{{
+1000kr * antal ’positive opdateringer’ * (spillerens rating)/1000.)
+}}}
   * Derudover gives der bonus eller straf alt efter hvor stor tilbage eller fremgang en spiller har haft:
 
 || Ændring i rating || Bonus/straf (i 1000 kr) ||
