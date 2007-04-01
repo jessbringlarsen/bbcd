@@ -1,4 +1,3 @@
-
 = Introduktion =
 Nærværende tekst er ment som en vejledning til opsætning af Dreamteam på din Windows XP med Visual Studio 2005 eller tilsvarende. 
 
