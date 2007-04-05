@@ -56,8 +56,8 @@ Man starter med et beløb på 1 million kroner til at købe de 10 spillere for. 
 
 ==Spillerhandel==
 Spillerhandler kan foretages torsdag (ny opdatering) til lørdag (kl.10.00).
-Ratingopdateringen foretages torsdag, men kampene der spilles mandag-onsdag er først med næste uge, hvilket åbner op for at "snyde". Mulig løsning:
-
+Ratingopdateringen foretages torsdag, men kampene der spilles mandag-onsdag er først med næste uge, hvilket åbner op for at "snyde". Det er fair nok, da det vil kræve megen baggrundsresearch. 
+Alternativt:
   * Dog vil der blive fratrukket 5.000 kr, hvis der handles fem dage efter en opdatering.
   * Der vil blive fratrukket 20.000 kr, hvis der handles i den resterende periode op til en opdatering.
 
