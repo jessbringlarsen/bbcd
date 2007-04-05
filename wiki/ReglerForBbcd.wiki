@@ -55,9 +55,9 @@ Man starter med et beløb på 1 million kroner til at købe de 10 spillere for. 
   * De penge man ikke får brugt på indkøb af spillere vil blive sat i banken og man vil ved hver ratingopdatering få renter af beløbet, svarende til 2 % (af beløbet)
 
 ==Spillerhandel==
-Spillerhandler kan foretages i hele perioden mellem rating opdateringerne. 
-  * Dog vil der blive fratrukket 5.000 kr, hvis der handles fem dage efter en opdatering.
-  * Der vil blive fratrukket 20.000 kr, hvis der handles i den resterende periode op til en opdatering.
+Spillerhandler kan foretages torsdag (ny opdatering) til lørdag (kl.10.00). 
+(  * Dog vil der blive fratrukket 5.000 kr, hvis der handles fem dage efter en opdatering.
+  * Der vil blive fratrukket 20.000 kr, hvis der handles i den resterende periode op til en opdatering.)
 
 ==Egne ligaer==
 Der er mulighed for at oprette private eller offentlige ligaer.
