@@ -3,5 +3,7 @@
 = Tidsplan =
 
 * Brugerprofil - 1. August (Henrik)
+
 * Spillerhandel - 1. August (Henrik)
+
 * Gennemgang af design - 1. August
