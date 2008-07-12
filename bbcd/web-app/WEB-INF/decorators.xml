@@ -1,0 +1,7 @@
+<decorators>
+	<excludes>
+		<pattern>*.zul</pattern>
+		<pattern>*.zhtml</pattern>
+		<pattern>/zkau/*</pattern>
+	</excludes>
+</decorators>
