@@ -24,5 +24,8 @@ class Profile {
     String question;
     String answer;
 
+    public String toString() {
+    	"${firstName} ${sirName}"
+    }
 
 }
