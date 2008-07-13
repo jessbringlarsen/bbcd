@@ -35,10 +35,15 @@
                         
                             <td><g:link action="show" id="${playerExternalBinding.id}">${playerExternalBinding.id?.encodeAsHTML()}</g:link></td>
                         
-                            <td>${playerExternalBinding.player?.encodeAsHTML()}</td>
+                            <td>
+                            	<g:link controller="playerRatingChart" 
+                            			action="show" 
+                            			params="[externalId:playerExternalBinding.externalId, defaultClubXmlId:'60806']">
+                            		${playerExternalBinding.player?.encodeAsHTML()}
+                            	</g:link></td>
                         
                             <td>${playerExternalBinding.externalId?.encodeAsHTML()}</td>
-                        
+                        	
                         </tr>
                     </g:each>
                     </tbody>
