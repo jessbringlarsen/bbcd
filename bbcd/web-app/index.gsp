@@ -18,17 +18,5 @@
               </g:each>
             </ul>
         </div>
-        <chart:graph line_hollow="2,4,0x80a033,Bounces,10"
-                 title="This is a test graph,{font-size: 20px; color: #736AFF}"
-                 x_labels="Mon,Tue,Wed,Thu,Fri,Sat,Sun"
-                 x_label_style="10,0x000000,0,2"
-                 y_min="5"
-                 y_max="20"
-                 y_label_steps="4"
-                 y_legend="Open Flash Chart,12,#736AFF"
-                 tool_tip="Progress #val#%"
-                 values="5,6,7,7.5,8,8,9"
-                 width="500" height="300"
-        />
     </body>
 </html>
