@@ -16,16 +16,10 @@ class Profile {
 	String	sirName;
 	String	email;
 	String	password;
-    String  activationKey;
     Date 	lastLogin;
     int     activated;
 
-	//  Used if the password needs to be resend.
-    String question;
-    String answer;
-
-    public String toString() {
+    String toString() {
     	"${firstName} ${sirName}"
     }
-
 }
