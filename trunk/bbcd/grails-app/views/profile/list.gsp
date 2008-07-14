@@ -20,37 +20,37 @@
                 <table>
                     <thead>
                         <tr>
-
+                        
                    	        <g:sortableColumn property="id" title="Id" />
-
-                   	        <g:sortableColumn property="activated" title="Activated" />
-
-                   	        <g:sortableColumn property="activationKey" title="Activation Key" />
-
-                   	        <g:sortableColumn property="answer" title="Answer" />
-
+                        
+                   	        <g:sortableColumn property="firstName" title="First Name" />
+                        
+                   	        <g:sortableColumn property="sirName" title="Sir Name" />
+                        
                    	        <g:sortableColumn property="email" title="Email" />
-
-                   	        <g:sortableColumn property="firstName" title="Firstname" />
-
+                        
+                   	        <g:sortableColumn property="password" title="Password" />
+                        
+                   	        <g:sortableColumn property="activated" title="Activated" />
+                        
                         </tr>
                     </thead>
                     <tbody>
                     <g:each in="${profileList}" status="i" var="profile">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-
-                            <td><g:link action="show" id="${profile.id}">${profile.id?.encodeAsHTML()}</g:link></td>
-
-                            <td>${profile.activated?.encodeAsHTML()}</td>
-
-                            <td>${profile.activationKey?.encodeAsHTML()}</td>
-
-                            <td>${profile.answer?.encodeAsHTML()}</td>
-
-                            <td>${profile.email?.encodeAsHTML()}</td>
-
-                            <td>${profile.firstName?.encodeAsHTML()}</td>
-
+                        
+                            <td><g:link action="show" id="${profile.id}">${fieldValue(bean:profile, field:'id')}</g:link></td>
+                        
+                            <td>${fieldValue(bean:profile, field:'firstName')}</td>
+                        
+                            <td>${fieldValue(bean:profile, field:'sirName')}</td>
+                        
+                            <td>${fieldValue(bean:profile, field:'email')}</td>
+                        
+                            <td>${fieldValue(bean:profile, field:'password')}</td>
+                        
+                            <td>${fieldValue(bean:profile, field:'activated')}</td>
+                        
                         </tr>
                     </g:each>
                     </tbody>

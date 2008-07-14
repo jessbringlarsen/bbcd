@@ -58,13 +58,6 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Private League:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:league, field:'privateLeague')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
                             <td valign="top" class="name">Teams:</td>
                             
                             <td  valign="top" style="text-align:left;" class="value">
