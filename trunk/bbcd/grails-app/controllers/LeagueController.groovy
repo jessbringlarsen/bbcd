@@ -48,6 +48,14 @@ class LeagueController {
     def update = {
         def league = League.get( params.id )
         if(league) {
+        	/*
+        	 * Encode password if changed 
+        	 */
+        	String passwordEncoded = params.password.encodeAsPassword()
+        	if(!profile.password.isEmpty() && !profile.password.equals(passwordEncoded)) {
+        		params.password = passwordEncoded
+        	}
+        	
             league.properties = params
             if(!league.hasErrors() && league.save()) {
                 flash.message = "League ${params.id} updated"
@@ -72,6 +80,11 @@ class LeagueController {
     def save = {
         def league = new League(params)
         if(!league.hasErrors() && league.save()) {
+        	
+        	if(!profile.password.isEmpty()) {
+        		profile.password = profile.password.encodeAsPassword()
+        	}
+        	
             flash.message = "League ${league.id} created"
             redirect(action:show,id:league.id)
         }
