@@ -46,19 +46,19 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="credit">Credit:</label>
+                                    <label for="teamOwner">Team Owner:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:team,field:'credit','errors')}">
-                                    <input type="text" id="credit" name="credit" value="${fieldValue(bean:team,field:'credit')}" />
+                                <td valign="top" class="value ${hasErrors(bean:team,field:'teamOwner','errors')}">
+                                    <g:select optionKey="id" from="${Profile.list()}" name="teamOwner.id" value="${team?.teamOwner?.id}" ></g:select>
                                 </td>
                             </tr> 
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="teamOwner">Team Owner:</label>
+                                    <label for="credit">Credit:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:team,field:'teamOwner','errors')}">
-                                    <g:select optionKey="id" from="${Profile.list()}" name="teamOwner.id" value="${team?.teamOwner?.id}" ></g:select>
+                                <td valign="top" class="value ${hasErrors(bean:team,field:'credit','errors')}">
+                                    <input type="text" id="credit" name="credit" value="${fieldValue(bean:team,field:'credit')}" />
                                 </td>
                             </tr> 
                         

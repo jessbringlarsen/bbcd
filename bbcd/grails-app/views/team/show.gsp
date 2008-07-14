@@ -44,6 +44,13 @@
                         </tr>
                     
                         <tr class="prop">
+                            <td valign="top" class="name">Team Owner:</td>
+                            
+                            <td valign="top" class="value"><g:link controller="profile" action="show" id="${team?.teamOwner?.id}">${team?.teamOwner?.encodeAsHTML()}</g:link></td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
                             <td valign="top" class="name">Credit:</td>
                             
                             <td valign="top" class="value">${fieldValue(bean:team, field:'credit')}</td>
@@ -69,17 +76,10 @@
                             <td  valign="top" style="text-align:left;" class="value">
                                 <ul>
                                 <g:each var="p" in="${team.players}">
-                                    <li><g:link controller="player" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
+                                    <li><g:link controller="teamPlayer" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
                                 </g:each>
                                 </ul>
                             </td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Team Owner:</td>
-                            
-                            <td valign="top" class="value"><g:link controller="profile" action="show" id="${team?.teamOwner?.id}">${team?.teamOwner?.encodeAsHTML()}</g:link></td>
                             
                         </tr>
                     
