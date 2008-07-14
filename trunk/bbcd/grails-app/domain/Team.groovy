@@ -12,8 +12,7 @@ class Team {
 		teamOwner(blank:false)
     }
 	
-	static belongsTo = LeagueParticipant
-	static hasMany = [inleague:LeagueParticipant, players:Player]
+	static hasMany = [inleague:LeagueParticipant, players:TeamPlayer]
 	
 	String name
     Integer credit
