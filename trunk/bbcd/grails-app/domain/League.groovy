@@ -14,14 +14,19 @@ class League {
 	static belongsTo = Tournament
 	static hasMany = [teams:LeagueParticipant]
 	
+	static transients = [ "privateLeague" ] 
+	
 	String name;
 	Date creationDate;
 	Tournament tournament;  // The tournament the league belongs to.
-	Boolean privateLeague;
 	String password;
 	Profile leagueAdministrator;
 	
-	public String toString() {
+	boolean isPrivateLeague() {
+		!password.isEmpty()
+	}
+	
+	String toString() {
 		return name
 	}
 }
