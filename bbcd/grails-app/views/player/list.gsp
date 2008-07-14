@@ -31,25 +31,25 @@
                         
                    	        <g:sortableColumn property="playerNo" title="Player No" />
                         
-                   	        <g:sortableColumn property="xmlId" title="Xml Id" />
-                        
+                   	        <th>Ratings</th>
+                   	    
                         </tr>
                     </thead>
                     <tbody>
                     <g:each in="${playerList}" status="i" var="player">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
-                            <td><g:link action="show" id="${player.id}">${player.id?.encodeAsHTML()}</g:link></td>
+                            <td><g:link action="show" id="${player.id}">${fieldValue(bean:player, field:'id')}</g:link></td>
                         
-                            <td>${player.dateOfBirth?.encodeAsHTML()}</td>
+                            <td>${fieldValue(bean:player, field:'dateOfBirth')}</td>
                         
-                            <td>${player.gender?.encodeAsHTML()}</td>
+                            <td>${fieldValue(bean:player, field:'gender')}</td>
                         
-                            <td>${player.name?.encodeAsHTML()}</td>
+                            <td>${fieldValue(bean:player, field:'name')}</td>
                         
-                            <td>${player.playerNo?.encodeAsHTML()}</td>
+                            <td>${fieldValue(bean:player, field:'playerNo')}</td>
                         
-                            <td>${player.xmlId?.encodeAsHTML()}</td>
+                            <td>${fieldValue(bean:player, field:'ratings')}</td>
                         
                         </tr>
                     </g:each>

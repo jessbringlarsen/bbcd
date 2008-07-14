@@ -66,19 +66,42 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="xmlId">Xml Id:</label>
+                                    <label for="ratings">Ratings:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:player,field:'xmlId','errors')}">
-                                    <input type="text" id="xmlId" name="xmlId" value="${fieldValue(bean:player,field:'xmlId')}"/>
+                                <td valign="top" class="value ${hasErrors(bean:player,field:'ratings','errors')}">
+                                    
+<ul>
+<g:each var="r" in="${player?.ratings?}">
+    <li><g:link controller="rating" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></li>
+</g:each>
+</ul>
+<g:link controller="rating" params="['player.id':player?.id]" action="create">Add Rating</g:link>
+
                                 </td>
                             </tr> 
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="ratings">Ratings:</label>
+                                    <label for="teamParticipant">Team Participant:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:player,field:'ratings','errors')}">
+                                <td valign="top" class="value ${hasErrors(bean:player,field:'teamParticipant','errors')}">
                                     
+<ul>
+<g:each var="t" in="${player?.teamParticipant?}">
+    <li><g:link controller="teamPlayer" action="show" id="${t.id}">${t?.encodeAsHTML()}</g:link></li>
+</g:each>
+</ul>
+<g:link controller="teamPlayer" params="['player.id':player?.id]" action="create">Add TeamPlayer</g:link>
+
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="xmlId">Xml Id:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:player,field:'xmlId','errors')}">
+                                    <input type="text" id="xmlId" name="xmlId" value="${fieldValue(bean:player,field:'xmlId')}"/>
                                 </td>
                             </tr> 
                         

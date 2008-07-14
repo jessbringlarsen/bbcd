@@ -31,8 +31,8 @@
                    	    
                    	        <g:sortableColumn property="password" title="Password" />
                         
-                   	        <g:sortableColumn property="privateLeague" title="Private League" />
-                        
+                   	        <th>Tournament</th>
+                   	    
                         </tr>
                     </thead>
                     <tbody>
@@ -49,7 +49,7 @@
                         
                             <td>${fieldValue(bean:league, field:'password')}</td>
                         
-                            <td>${fieldValue(bean:league, field:'privateLeague')}</td>
+                            <td>${fieldValue(bean:league, field:'tournament')}</td>
                         
                         </tr>
                     </g:each>

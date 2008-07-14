@@ -25,70 +25,42 @@
                         <tr class="prop">
                             <td valign="top" class="name">Id:</td>
                             
-                            <td valign="top" class="value">${profile.id}</td>
+                            <td valign="top" class="value">${fieldValue(bean:profile, field:'id')}</td>
                             
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Activated:</td>
+                            <td valign="top" class="name">First Name:</td>
                             
-                            <td valign="top" class="value">${profile.activated}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Activation Key:</td>
-                            
-                            <td valign="top" class="value">${profile.activationKey}</td>
+                            <td valign="top" class="value">${fieldValue(bean:profile, field:'firstName')}</td>
                             
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Answer:</td>
+                            <td valign="top" class="name">Sir Name:</td>
                             
-                            <td valign="top" class="value">${profile.answer}</td>
+                            <td valign="top" class="value">${fieldValue(bean:profile, field:'sirName')}</td>
                             
                         </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Email:</td>
                             
-                            <td valign="top" class="value">${profile.email}</td>
+                            <td valign="top" class="value">${fieldValue(bean:profile, field:'email')}</td>
                             
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Firstname:</td>
+                            <td valign="top" class="name">Activated:</td>
                             
-                            <td valign="top" class="value">${profile.firstName}</td>
+                            <td valign="top" class="value">${fieldValue(bean:profile, field:'activated')}</td>
                             
                         </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Last Login:</td>
                             
-                            <td valign="top" class="value">${profile.lastLogin}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Password:</td>
-                            
-                            <td valign="top" class="value">${profile.password}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Question:</td>
-                            
-                            <td valign="top" class="value">${profile.question}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Sirname:</td>
-                            
-                            <td valign="top" class="value">${profile.sirName}</td>
+                            <td valign="top" class="value">${fieldValue(bean:profile, field:'lastLogin')}</td>
                             
                         </tr>
                     

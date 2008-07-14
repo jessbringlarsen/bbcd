@@ -60,16 +60,7 @@
                                     <label for="password">Password:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:league,field:'password','errors')}">
-                                    <input type="text" id="password" name="password" value="${fieldValue(bean:league,field:'password')}"/>
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="privateLeague">Private League:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:league,field:'privateLeague','errors')}">
-                                    <g:checkBox name="privateLeague" value="${league?.privateLeague}" ></g:checkBox>
+                                    <input type="password" id="password" name="password" value="${fieldValue(bean:league,field:'password')}"/>
                                 </td>
                             </tr> 
                         
