@@ -10,7 +10,7 @@ class Player {
         }
     }
 
-	static hasMany = [ratings:Rating]
+	static hasMany = [ratings:Rating, teamParticipant:TeamPlayer]
 
 	String		xmlId;
 	String		playerNo;
