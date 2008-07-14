@@ -48,6 +48,15 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
+                                    <label for="teamOwner">Team Owner:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:team,field:'teamOwner','errors')}">
+                                    <g:select optionKey="id" from="${Profile.list()}" name="teamOwner.id" value="${team?.teamOwner?.id}" ></g:select>
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
                                     <label for="credit">Credit:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:team,field:'credit','errors')}">
@@ -79,20 +88,11 @@
                                     
 <ul>
 <g:each var="p" in="${team?.players?}">
-    <li><g:link controller="player" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
+    <li><g:link controller="teamPlayer" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
 </g:each>
 </ul>
-<g:link controller="player" params="['team.id':team?.id]" action="create">Add Player</g:link>
+<g:link controller="teamPlayer" params="['team.id':team?.id]" action="create">Add TeamPlayer</g:link>
 
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="teamOwner">Team Owner:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:team,field:'teamOwner','errors')}">
-                                    <g:select optionKey="id" from="${Profile.list()}" name="teamOwner.id" value="${team?.teamOwner?.id}" ></g:select>
                                 </td>
                             </tr> 
                         

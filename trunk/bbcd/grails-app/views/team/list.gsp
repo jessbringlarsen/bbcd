@@ -27,10 +27,10 @@
                         
                    	        <g:sortableColumn property="creationDate" title="Creation Date" />
                         
-                   	        <g:sortableColumn property="credit" title="Credit" />
-                        
                    	        <th>Team Owner</th>
                    	    
+                   	        <g:sortableColumn property="credit" title="Credit" />
+                        
                         </tr>
                     </thead>
                     <tbody>
@@ -43,9 +43,9 @@
                         
                             <td>${fieldValue(bean:team, field:'creationDate')}</td>
                         
-                            <td>${fieldValue(bean:team, field:'credit')}</td>
-                        
                             <td>${fieldValue(bean:team, field:'teamOwner')}</td>
+                        
+                            <td>${fieldValue(bean:team, field:'credit')}</td>
                         
                         </tr>
                     </g:each>
