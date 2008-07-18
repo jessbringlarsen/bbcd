@@ -6,6 +6,12 @@ class Club {
     		shortName column:'short_name', index:'short_name_idx'
         }
     }
+	
+	static constraints = {
+		xmlId(unique: true)
+		name(unique: true)
+		shortName(unique: true)
+	}
 
 	String xmlId;
 	String name;

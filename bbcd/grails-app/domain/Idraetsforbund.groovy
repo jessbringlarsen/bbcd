@@ -6,6 +6,11 @@ class Idraetsforbund {
     		xmlId column:'xml_id', index:'xml_id_idx'
         }
     }
+	
+	static constraints = {
+		xmlId(unique: true)
+		name(blank: false, unique: true)
+	}
 
 	String name;
 	String xmlId;
