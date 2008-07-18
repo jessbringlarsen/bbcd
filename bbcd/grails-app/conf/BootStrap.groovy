@@ -4,10 +4,12 @@ class BootStrap {
 
      def init = { servletContext ->
 
-     	new Idraetsforbund(name:"ØBTU", xmlId:"1").save()
+     	def oebtu = new Idraetsforbund(name:"ØBTU", xmlId:"1").save()
      	new Idraetsforbund(name:"JBTU", xmlId:"2").save()
      	new Idraetsforbund(name:"FBTU", xmlId:"3").save()
      	new Idraetsforbund(name:"BBTU", xmlId:"4").save()
+     	
+     	new Club(xmlId: '1', name: 'Brøndby BC',	shortName: 'BBC', union: oebtu).save()
      	
      	Profile profile = new Profile(firstName:"Jess", 
      			sirName:"Bring-Larsen",
@@ -56,6 +58,7 @@ class BootStrap {
      	new PointsRule(fromRating:11, toRating:15, credit:15000).save()
      	new PointsRule(fromRating:21, toRating:30, credit:20000).save()
      	new PointsRule(fromRating:31, toRating:10000, credit:30000).save()
+     	
      	
      }
 
