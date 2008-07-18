@@ -9,6 +9,14 @@ class Player {
     		playerNo column:'player_no', index:'player_no_idx'
         }
     }
+	
+	static constraints = {
+		xmlId(unique: true)
+		playerNo(blank: false, unique: true)
+		name(blank: false)
+		gender(blank: false)
+		dateOfBirth(blank: false)
+	}
 
 	static hasMany = [ratings:Rating, teamParticipant:TeamPlayer]
 

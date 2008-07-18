@@ -7,6 +7,10 @@ class Rating implements Comparable {
             ratingUpdate column:'rating_update_id', index:'rating_update_idx'
         }
     }
+	
+	static constraints = {
+		ratingUpdate(unique:'player')
+	}
 
 	RatingUpdate ratingUpdate;
 	int rating;
