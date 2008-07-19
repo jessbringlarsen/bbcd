@@ -43,14 +43,14 @@ log4j {
     appender.stdout = "org.apache.log4j.ConsoleAppender"
     appender.'stdout.layout'="org.apache.log4j.PatternLayout"
     appender.'stdout.layout.ConversionPattern'='[%r] %c{2} %m%n'
-    appender.errors = "org.apache.log4j.FileAppender"
-    appender.'errors.layout'="org.apache.log4j.PatternLayout"
-    appender.'errors.layout.ConversionPattern'='[%r] %c{2} %m%n'
-    appender.'errors.File'="stacktrace.log"
+    appender.stacktraceLog = "org.apache.log4j.FileAppender"
+    appender.'stacktraceLog.layout'="org.apache.log4j.PatternLayout"
+    appender.'stacktraceLog.layout.ConversionPattern'='[%r] %c{2} %m%n'
+    appender.'stacktraceLog.File'="stacktrace.log"
     rootLogger="error,stdout"
     logger {
         grails="error"
-        StackTrace="error,errors"
+        StackTrace="error,stacktraceLog"
         org {
             codehaus.groovy.grails.web.servlet="error"  //  controllers
             codehaus.groovy.grails.web.pages="error" //  GSP
