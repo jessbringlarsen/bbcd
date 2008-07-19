@@ -11,6 +11,18 @@ import weblogic.jws.proxies.OSTSTAPfunctionsWS_Impl;
 
 /**
  * Responsible for retrieving and save the rating data, players and clubs to the database.
+ * 
+ * This class depends on the "Java Proxy" and "Proxy Support Jar" jars from
+ * http://193.138.115.87/webservices/dk/dif/is/steavne/OSTSTAPfunctionsWS.jws
+ * 
+ * The two files must be put in the lib/ folder.
+ * 
+ * The jar webserviceclient.jar must undergo some tweeking to avoid classloader issues.
+ * - Unpack the jar
+ * - Remove the org directory
+ * -- It contains some sax/dom components that already is in the grails lib
+ * - Go to javax/xml/ and remove the transform directory
+ * - Repack the files and put the newly packed jar i the lib/ dir.
  *
  */
 class RatingImportController {
