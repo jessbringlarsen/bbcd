@@ -7,7 +7,7 @@ dataSource {
 hibernate {
     cache.use_second_level_cache=true
     cache.use_query_cache=true
-    cache.provider_class='org.hibernate.cache.EhCacheProvider'
+    cache.provider_class='com.opensymphony.oscache.hibernate.OSCacheProvider'
 }
 // environment specific settings
 environments {
@@ -19,7 +19,7 @@ environments {
 	}
 	test {
 		dataSource {
-			dbCreate = "update"
+			dbCreate = "create-drop"
 			url = "jdbc:mysql://localhost/bbcd"
 		}
 	}
