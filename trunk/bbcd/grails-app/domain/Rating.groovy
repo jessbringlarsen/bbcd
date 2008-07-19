@@ -9,7 +9,9 @@ class Rating implements Comparable {
     }
 	
 	static constraints = {
-		ratingUpdate(unique:'player')
+		ratingUpdate(unique:'player', blank: false)
+		player(blank: false)
+		club(blank: false)
 	}
 
 	RatingUpdate ratingUpdate;
