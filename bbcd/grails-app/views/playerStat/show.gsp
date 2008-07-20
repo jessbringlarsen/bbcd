@@ -25,35 +25,35 @@
                         <tr class="prop">
                             <td valign="top" class="name">Id:</td>
                             
-                            <td valign="top" class="value">${playerStat.id}</td>
+                            <td valign="top" class="value">${fieldValue(bean:playerStat, field:'id')}</td>
                             
                         </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Credit Status:</td>
                             
-                            <td valign="top" class="value">${playerStat.creditStatus}</td>
+                            <td valign="top" class="value">${fieldValue(bean:playerStat, field:'creditStatus')}</td>
                             
                         </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Player:</td>
                             
-                            <td valign="top" class="value"><g:link controller="player" action="show" id="${playerStat?.player?.id}">${playerStat?.player}</g:link></td>
+                            <td valign="top" class="value"><g:link controller="player" action="show" id="${playerStat?.player?.id}">${playerStat?.player?.encodeAsHTML()}</g:link></td>
                             
                         </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Rating Status:</td>
                             
-                            <td valign="top" class="value">${playerStat.ratingStatus}</td>
+                            <td valign="top" class="value">${fieldValue(bean:playerStat, field:'ratingStatus')}</td>
                             
                         </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Rating Update:</td>
                             
-                            <td valign="top" class="value"><g:link controller="ratingUpdate" action="show" id="${playerStat?.ratingUpdate?.id}">${playerStat?.ratingUpdate}</g:link></td>
+                            <td valign="top" class="value"><g:link controller="ratingUpdate" action="show" id="${playerStat?.ratingUpdate?.id}">${playerStat?.ratingUpdate?.encodeAsHTML()}</g:link></td>
                             
                         </tr>
                     

@@ -37,15 +37,15 @@
                     <g:each in="${playerStatList}" status="i" var="playerStat">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
-                            <td><g:link action="show" id="${playerStat.id}">${playerStat.id?.encodeAsHTML()}</g:link></td>
+                            <td><g:link action="show" id="${playerStat.id}">${fieldValue(bean:playerStat, field:'id')}</g:link></td>
                         
-                            <td>${playerStat.creditStatus?.encodeAsHTML()}</td>
+                            <td>${fieldValue(bean:playerStat, field:'creditStatus')}</td>
                         
-                            <td>${playerStat.player?.encodeAsHTML()}</td>
+                            <td>${fieldValue(bean:playerStat, field:'player')}</td>
                         
-                            <td>${playerStat.ratingStatus?.encodeAsHTML()}</td>
+                            <td>${fieldValue(bean:playerStat, field:'ratingStatus')}</td>
                         
-                            <td>${playerStat.ratingUpdate?.encodeAsHTML()}</td>
+                            <td>${fieldValue(bean:playerStat, field:'ratingUpdate')}</td>
                         
                         </tr>
                     </g:each>

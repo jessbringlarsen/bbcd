@@ -3,8 +3,8 @@ class PlayerStat {
 	static belongsTo = [ratingUpdate:RatingUpdate]
 	static mapping = {
     	columns {
-    		player column:'player', index:'player_idx'
-    		ratingUpdate column:'rating_update', index:'rating_update_idx, player_idx'
+    		player column:'player_id', index:'player_idx'
+    		ratingUpdate column:'rating_update_id', index:'rating_update_idx, player_idx'
         }
     }
 

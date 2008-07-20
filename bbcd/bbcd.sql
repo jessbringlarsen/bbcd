@@ -30,14 +30,14 @@ BEGIN
 
 	-- Insert statistik rækker for spillere. Ignorer hvis der allerede findes en række.
 	insert ignore into player_stat
-		(version, player, rating_status, rating_update, credit_status)
+		(version, player_id, rating_status, rating_update_id, credit_status)
 		(select 0, id, 0, ratingupdateid, 0 from player);
 
 	-- Opdater statistik rækker for alle spillere. Dvs. frem- eller tilbage-gang i rating sidstn sidste opdatering.
 	update player_stat ss set rating_status =
 		((select 2*r.rating
 		from rating r
-		where r.player_id = ss.player
+		where r.player_id = ss.player_id
 			and r.rating_update_id = ratingupdateid)
 		-
 		(select sum(r.rating)
@@ -46,15 +46,15 @@ BEGIN
 		select ro.id
 		from rating_update ro
 		order by ro.date_of_update desc limit 2) ro on ro.id = r.rating_update_id
-		where r.player_id = ss.player))
-	where ss.rating_update = ratingupdateid;
+		where r.player_id = ss.player_id))
+	where ss.rating_update_id = ratingupdateid;
 
 	-- Indsæt række i tabel der angiver hvor meget prisen på spilleren
 	-- er gået ned eller op siden sidste ratingopdatering.
 	UPDATE player_stat ss SET ss.credit_status =
 	 (SELECT sp.credit from points_rule sp
 	 WHERE sp.from_rating <= ss.rating_status AND sp.to_rating >= ss.rating_status)
-	 WHERE ss.rating_update= ratingupdateid;
+	 WHERE ss.rating_update_id = ratingupdateid;
 
 END|
 
@@ -72,24 +72,24 @@ BEGIN
 	from rating_update_h;
 
 	-- Drop alle eventuelle eksisterende statistik rækker for det aktuelle ratingopdatering
-	delete from team_stat where rating_update = ratingupdate_id;
+	delete from team_stat where rating_update_id = ratingupdate_id;
 
 	-- Indsæt rating statistik for hold
-	insert ignore into team_stat (team, rating_update, rating_status)
+	insert ignore into team_stat (team_id, rating_update_id, rating_status)
 		(select tp.team_id, ratingupdate_id, sum(rating_status) from team_player tp
-		join player_stat ps on ps.player = tp.player_id
+		join player_stat ps on ps.player_id = tp.player_id
 		group by tp.team_id);
 
 	-- Indsæt point statistik for hold		
 	update team_stat ts set ts.credit_status = 
 		(SELECT sum(ps.credit_status)
 			FROM team_player tp
-				JOIN player_stat ps ON ps.player = tp.player_id
-			WHERE tp.team_id = ts.team
-				AND ps.rating_update=ratingupdate_id);
+				JOIN player_stat ps ON ps.player_id = tp.player_id
+			WHERE tp.team_id = ts.team_id
+				AND ps.rating_update_id=ratingupdate_id);
 
 	-- Opdater placering for holdene
 	update team_stat sh set sh.position =
    		(select @rownum:=@rownum+1 position from (select @rownum:=0) r)
-		where sh.rating_update = ratingupdate_id order by sh.rating_status desc;
+		where sh.rating_update_id = ratingupdate_id order by sh.rating_status desc;
 END|
