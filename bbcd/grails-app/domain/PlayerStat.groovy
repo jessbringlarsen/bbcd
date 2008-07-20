@@ -12,8 +12,8 @@ class PlayerStat {
 	RatingUpdate ratingUpdate
 
 	// 'Angiver spillerens frem- eller tilbage-gang siden sidste ratingopdatering',
-	int ratingStatus
+	Integer ratingStatus
 
 	// 'Angiver spillerens frem-eller tilbage-gang i pris siden sidste ratingopdatering',
-	int creditStatus
+	Integer creditStatus
 }
