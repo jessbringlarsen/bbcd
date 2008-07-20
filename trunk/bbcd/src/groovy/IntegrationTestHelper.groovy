@@ -9,6 +9,7 @@ class IntegrationTestHelper {
 	static def club
 	static def players = []
 	static def ratingUpdates = []
+	static def teams = []
 	
 	static {
 		new PointsRuleData()
@@ -18,25 +19,63 @@ class IntegrationTestHelper {
      	new Idraetsforbund(name:"FBTU", xmlId:"0003").save()
      	new Idraetsforbund(name:"BBTU", xmlId:"0004").save()
 		club = new Club(xmlId: '00001', name: 'BBC', shortName: 'BBC', union: idraetsforbund).save()
-		
-		players[0] = new Player(xmlId: '00001', 
-				playerNo: '1',
-				name: 'player1',
-				gender: '1',
-				dateOfBirth: new Date()).save()
-		players[1] = new Player(xmlId: '00002', 
-				playerNo: '2',
-				name: 'player2',
-				gender: '1',
-				dateOfBirth: new Date()).save()
-		players[2] = new Player(xmlId: '00003', 
-				playerNo: '3',
-				name: 'player3',
-				gender: '1',
-				dateOfBirth: new Date()).save()
+
+		for(i in 0..3) {
+			players[i] = new Player(xmlId: "0000${i}", 
+                playerNo: "${i}",
+                name: "player-${i}",
+                gender: '1',
+                dateOfBirth: new Date()).save()
+		}
 				
 		ratingUpdates[0] = new RatingUpdate(dateOfUpdate: new Date(100, 1, 1)).save()
 		ratingUpdates[1] = new RatingUpdate(dateOfUpdate: new Date(100, 1, 2)).save()
+		
+		
+		Profile profile = new Profile(firstName:"Jess", 
+     			sirName:"Bring-Larsen",
+     			email:"jess@bringlarsen.dk",
+     			password:"hemmeligt",
+     			activationKey:"1",
+     			lastLogin:new Date(),
+     			activated:new Integer(1),
+     			question:"test",
+     			answer:"test")
+     	profile.save()
+     	
+     	teams[0] = new Team(name:"TeamOne",
+     			credit:new Integer(500),
+     			creationDate:new Date(),
+     			teamOwner:profile).save()
+     			
+     	new TeamPlayer(team: teams[0], player:players[0]).save()
+     	new TeamPlayer(team: teams[0], player:players[1]).save()
+		
+		teams[1] = new Team(name:"TeamTwo",
+     			credit:new Integer(1500),
+     			creationDate:new Date(),
+     			teamOwner:profile).save()
+     	
+     	new TeamPlayer(team: teams[1], player:players[2]).save()
+     	new TeamPlayer(team: teams[1], player:players[3]).save()
+     			
+     	Tournament tournament = new Tournament(name:"ØM",
+     			tournamentStart:new Date(),
+     			tournamentEnd: new Date(),
+     			isCurrentTournament:Boolean.TRUE)
+     	tournament.save()
+     			
+     	new League(name:"LeagueOne",
+     			creationDate:new Date(),
+		    	tournament:tournament,
+		    	password:"hemmeligt",
+		    	leagueAdministrator:profile).save()
+		    	
+		new League(name:"LeagueTwo",
+     			creationDate:new Date(),
+		    	tournament:tournament,
+		    	password:"hemmeligt",
+		    	leagueAdministrator:profile).save()
 	}
 	
 	def doRatingUpdate(def ratingUpdate, def rating, def player) {
