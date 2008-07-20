@@ -23,7 +23,6 @@ COMMENT 'Update statement for opdatering af spillerrating 2*seneste rating - (se
 BEGIN
 	declare ratingupdateid int(11);
 
-
 	-- Vælg den seneste ratingopdatering
 	select id
 	into ratingupdateid
@@ -31,8 +30,8 @@ BEGIN
 
 	-- Insert statistik rækker for spillere. Ignorer hvis der allerede findes en række.
 	insert ignore into player_stat
-		(player, rating_status, rating_update)
-		(select id, 0, ratingupdateid from player);
+		(version, player, rating_status, rating_update, credit_status)
+		(select 0, id, 0, ratingupdateid, 0 from player);
 
 	-- Opdater statistik rækker for alle spillere. Dvs. frem- eller tilbage-gang i rating sidstn sidste opdatering.
 	update player_stat ss set rating_status =
@@ -49,6 +48,13 @@ BEGIN
 		order by ro.date_of_update desc limit 2) ro on ro.id = r.rating_update_id
 		where r.player_id = ss.player))
 	where ss.rating_update = ratingupdateid;
+
+	-- Indsæt række i tabel der angiver hvor meget prisen på spilleren
+	-- er gået ned eller op siden sidste ratingopdatering.
+	UPDATE player_stat ss SET ss.credit_status =
+	 (SELECT sp.credit from points_rule sp
+	 WHERE sp.from_rating <= ss.rating_status AND sp.to_rating >= ss.rating_status)
+	 WHERE ss.rating_update= ratingupdateid;
 
 END|
 
