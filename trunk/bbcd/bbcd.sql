@@ -72,21 +72,21 @@ BEGIN
 	from rating_update_h;
 
 	-- Drop alle eventuelle eksisterende statistik rækker for det aktuelle ratingopdatering
-	delete from stat_team where rating_update_id = ratingupdate_id;
+	delete from team_stat where rating_update = ratingupdate_id;
 
 	-- Indsæt rating statistik for hold
-	insert into stat_team (teamid, rating_update, rating_status)
+	insert ignore into team_stat (team, rating_update, rating_status)
 		(select tp.team_id, ratingupdate_id, sum(rating_status) from team_player tp
 		join player_stat ps on ps.player = tp.player_id
 		group by tp.team_id);
 
 	-- Indsæt point statistik for hold		
-	update team_stat ts set sh.credit_status = 
+	update team_stat ts set ts.credit_status = 
 		(SELECT sum(ps.credit_status)
 			FROM team_player tp
 				JOIN player_stat ps ON ps.player = tp.player_id
-			WHERE tp.team_id = ts.team_id
-				AND ps.raitng_update=ratingupdate_id);
+			WHERE tp.team_id = ts.team
+				AND ps.rating_update=ratingupdate_id);
 
 	-- Opdater placering for holdene
 	update team_stat sh set sh.position =
