@@ -13,6 +13,7 @@ class Team {
     }
 	
 	static hasMany = [inleague:LeagueParticipant, players:TeamPlayer]
+	static fetchMode = [players:'eager']
 	
 	String name
     Integer credit
