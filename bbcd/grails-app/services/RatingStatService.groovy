@@ -8,9 +8,13 @@ import org.hibernate.Query
 class RatingStatService
  {
 	SessionFactory sessionFactory
-
-	def updateStatitics() {
-		  //def sql = new groovy.sql.Sql(sessionFactory.currentSession.connection())  
-	      sessionFactory.currentSession.createSQLQuery("call updatePlayerRatingStat()")   
+	
+	def updatePlayerStatitics() {
+		callStoredProcedure("call updatePlayerRatingStat()")
+	}
+	
+	private def callStoredProcedure(String procedure) {
+	      def sql = new groovy.sql.Sql(sessionFactory.currentSession.connection())  
+	      def row = sql.execute(procedure)
 	}
 }
