@@ -1,50 +1,52 @@
 
 /**
- * Responsible for setting test data
+ * Test the stored procedure that update player statistics
  */
 class RatingUpdateTest  extends GroovyTestCase {
-	
-	public void testRatingUpdateProcedures() {
-		def idraetsforbund = new Idraetsforbund(name: 'ØBTU', xmlId: '0001').save()
-		def club = new Club(xmlId: '00001', name: 'BBC', shortName: 'BBC', union: idraetsforbund).save()
-		def players = []
-		def ratingUpdate = []
+
+	 def RatingStatService ratingStatService
+	 def integrationTestHelper = new IntegrationTestHelper()
+	 
+	 public void testRatingUpdateProcedures() {
 		
-		players[0] = new Player(xmlId: '00001', 
-				playerNo: '1',
-				name: 'player1',
-				gender: '1',
-				dateOfBirth: new Date()).save()
-		players[1] = new Player(xmlId: '00002', 
-				playerNo: '2',
-				name: 'player2',
-				gender: '1',
-				dateOfBirth: new Date()).save()
-		players[2] = new Player(xmlId: '00003', 
-				playerNo: '3',
-				name: 'player3',
-				gender: '1',
-				dateOfBirth: new Date()).save()
-				
-	    ratingUpdate[0] = new RatingUpdate(dateOfUpdate: new Date(100, 1, 1)).save()
-        new Rating(ratingUpdate: ratingUpdate[0], rating: 1000, player: players[0], club: club).save();
-        new Rating(ratingUpdate: ratingUpdate[0], rating: 1500, player: players[1], club: club).save();
-        new Rating(ratingUpdate: ratingUpdate[0], rating: 1500, player: players[2], club: club).save();
-        def ratingList = Rating.findAllByPlayer(players[0])
-        assert ratingList.size() == 1
-        
-        ratingUpdate[1] = new RatingUpdate(dateOfUpdate: new Date(100, 1, 2)).save()
-        new Rating(ratingUpdate: ratingUpdate[1], rating: 1500, player: players[0], club: club).save();
-        new Rating(ratingUpdate: ratingUpdate[1], rating: 1, player: players[1], club: club).save();
-        new Rating(ratingUpdate: ratingUpdate[1], rating: 900, player: players[2], club: club).save();
-        ratingList = Rating.findAllByPlayer(players[0])
-        assert ratingList.size() == 2
-        
-        ratingUpdate[2] = new RatingUpdate(dateOfUpdate: new Date(100, 1, 3)).save()
-        new Rating(ratingUpdate: ratingUpdate[2], rating: 1500, player: players[0], club: club).save();
-        new Rating(ratingUpdate: ratingUpdate[2], rating: 3000, player: players[1], club: club).save();
-        new Rating(ratingUpdate: ratingUpdate[2], rating: 800, player: players[2], club: club).save();
-        ratingList = Rating.findAllByPlayer(players[0])
-        assert ratingList.size() == 3
+		doFirstRatingUpdate()
+		def ratingList = Rating.findAllByPlayer(IntegrationTestHelper.players[0])
+		assert ratingList.size() == 1
+
+		doSecondRatingUpdate()
+		ratingList = Rating.findAllByPlayer(IntegrationTestHelper.players[0])
+		assert ratingList.size() == 2
+		
+		// Call stored procedure that update player_stat
+	    ratingStatService.updatePlayerStatitics()
+	    
+	    checkPlayer(IntegrationTestHelper.players[0], 0)
+	    checkPlayer(IntegrationTestHelper.players[1], -500)
+	    checkPlayer(IntegrationTestHelper.players[2], 500)
 	}
+	 
+	 /**
+	  * Check that the playerStat table have been updated properly
+	  */
+	 private def checkPlayer(def player, def expectedRating) {
+		 def playerStats = PlayerStat.findAllByPlayer(player)
+		 assert playerStats.size() == 1
+		 assert playerStats[0].ratingStatus == expectedRating
+		 def pointsRule = PointsRule.findByFromRatingLessThanEqualsAndToRatingGreaterThanEquals(expectedRating, expectedRating)
+		 assert playerStats[0].creditStatus == pointsRule.credit
+	 }
+	 
+	 private def doFirstRatingUpdate() {
+		 def ratingUpdate = integrationTestHelper.ratingUpdates[0]
+		 integrationTestHelper.doRatingUpdate(ratingUpdate, 1000, integrationTestHelper.players[0])
+		 integrationTestHelper.doRatingUpdate(ratingUpdate, 500, integrationTestHelper.players[1])
+		 integrationTestHelper.doRatingUpdate(ratingUpdate, 1500, integrationTestHelper.players[2])
+	 }
+	 
+	 private def doSecondRatingUpdate() {
+		 def ratingUpdate = integrationTestHelper.ratingUpdates[1]
+		 integrationTestHelper.doRatingUpdate(ratingUpdate, 1000, integrationTestHelper.players[0])
+		 integrationTestHelper.doRatingUpdate(ratingUpdate, 0, integrationTestHelper.players[1])
+		 integrationTestHelper.doRatingUpdate(ratingUpdate, 2000, integrationTestHelper.players[2])
+	 }
 }
