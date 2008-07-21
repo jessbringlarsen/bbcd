@@ -5,13 +5,14 @@
  */
 class IntegrationTestHelper {
 	
-	static def idraetsforbund
-	static def club
-	static def players = []
-	static def ratingUpdates = []
-	static def teams = []
+	def idraetsforbund
+	def club
+	def players = []
+	def ratingUpdates = []
+	def teams = []
+	def leagues = []
 	
-	static {
+	def IntegrationTestHelper() {
 		new PointsRuleData()
 		
 		idraetsforbund = new Idraetsforbund(name: 'ØBTU', xmlId: '0001').save()
@@ -20,7 +21,7 @@ class IntegrationTestHelper {
      	new Idraetsforbund(name:"BBTU", xmlId:"0004").save()
 		club = new Club(xmlId: '00001', name: 'BBC', shortName: 'BBC', union: idraetsforbund).save()
 
-		for(i in 0..3) {
+		for(i in 0..7) {
 			players[i] = new Player(xmlId: "0000${i}", 
                 playerNo: "${i}",
                 name: "player-${i}",
@@ -42,22 +43,25 @@ class IntegrationTestHelper {
      			question:"test",
      			answer:"test")
      	profile.save()
-     	
-     	teams[0] = new Team(name:"TeamOne",
-     			credit:new Integer(500),
-     			creationDate:new Date(),
-     			teamOwner:profile).save()
+
+		for(i in 0..3) {
+			teams[i] = new Team(name:"Team-${i}",
+	     			credit:new Integer(1500),
+	     			creationDate:new Date(),
+	     			teamOwner:profile).save()
+		}
      			
      	new TeamPlayer(team: teams[0], player:players[0]).save()
      	new TeamPlayer(team: teams[0], player:players[1]).save()
 		
-		teams[1] = new Team(name:"TeamTwo",
-     			credit:new Integer(1500),
-     			creationDate:new Date(),
-     			teamOwner:profile).save()
-     	
      	new TeamPlayer(team: teams[1], player:players[2]).save()
      	new TeamPlayer(team: teams[1], player:players[3]).save()
+     	
+     	new TeamPlayer(team: teams[2], player:players[4]).save()
+     	new TeamPlayer(team: teams[2], player:players[5]).save()
+		
+     	new TeamPlayer(team: teams[3], player:players[6]).save()
+     	new TeamPlayer(team: teams[3], player:players[7]).save()
      			
      	Tournament tournament = new Tournament(name:"ØM",
      			tournamentStart:new Date(),
@@ -65,17 +69,22 @@ class IntegrationTestHelper {
      			isCurrentTournament:Boolean.TRUE)
      	tournament.save()
      			
-     	new League(name:"LeagueOne",
+     	leagues[0] = new League(name:"LeagueOne",
      			creationDate:new Date(),
 		    	tournament:tournament,
 		    	password:"hemmeligt",
 		    	leagueAdministrator:profile).save()
 		    	
-		new League(name:"LeagueTwo",
+		leagues[1] = new League(name:"LeagueTwo",
      			creationDate:new Date(),
 		    	tournament:tournament,
 		    	password:"hemmeligt",
 		    	leagueAdministrator:profile).save()
+		    	
+		new LeagueParticipant(league: leagues[0], team: teams[0]).save()
+		new LeagueParticipant(league: leagues[0], team: teams[1]).save()
+		new LeagueParticipant(league: leagues[1], team: teams[2]).save()
+		new LeagueParticipant(league: leagues[1], team: teams[3]).save()
 	}
 	
 	def doRatingUpdate(def ratingUpdate, def rating, def player) {
