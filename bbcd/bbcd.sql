@@ -93,3 +93,31 @@ BEGIN
    		(select @rownum:=@rownum+1 position from (select @rownum:=0) r)
 		where sh.rating_update_id = ratingupdate_id order by sh.rating_status desc;
 END|
+
+drop procedure if exists updateLeagueRatingStat|
+create procedure updateLeagueRatingStat()
+LANGUAGE SQL
+MODIFIES SQL DATA
+COMMENT 'For alle hold i en liga, summér deres ratingtals frem- eller tilbage-gang, samt ligaens samlede placering'
+BEGIN
+	declare ratingupdate_id int(11);
+
+	-- Vælg den seneste ratingopdatering
+	select id
+	into ratingupdate_id
+	from rating_update_h;
+
+	-- Drop alle eventuelle eksisterende statistik rækker for det aktuelle ratingopdatering
+	delete from league_stat where rating_update_id = ratingupdate_id;
+
+	-- Indsæt statistik for liga
+	insert into league_stat (version, league_id, rating_update_id, rating_status, credit_status, position)
+		(select 0, lp.league_id, ratingupdate_id, sum(rating_status), sum(credit_status), 0 from league_participant lp
+		join team_stat ts on ts.team_id = lp.team_id
+		group by lp.league_id);
+
+	-- 	Opdater placering for liga
+	update league_stat ls set ls.position =
+   		(select @rownum:=@rownum+1 placering from (select @rownum:=0) r)
+		where ls.rating_update_id = ratingupdate_id order by ls.rating_status desc;
+END|

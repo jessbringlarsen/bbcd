@@ -17,6 +17,10 @@ class RatingStatService
 		callStoredProcedure("call updateTeamRatingStat()")
 	}
 	
+	def updateLeagueStatitics() {
+		callStoredProcedure("call updateLeagueRatingStat()")
+	}
+	
 	private def callStoredProcedure(String procedure) {
 	      def sql = new groovy.sql.Sql(sessionFactory.currentSession.connection())  
 	      def row = sql.execute(procedure)
