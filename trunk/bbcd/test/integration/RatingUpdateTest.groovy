@@ -5,30 +5,35 @@
 class RatingUpdateTest  extends GroovyTestCase {
 
 	 def RatingStatService ratingStatService
-	 def integrationTestHelper = new IntegrationTestHelper()
+	 def integrationTestHelper
 	 
 	 public void testRatingUpdateProcedures() {
-		
+		integrationTestHelper = new IntegrationTestHelper()
+		 
 		doFirstRatingUpdate()
-		def ratingList = Rating.findAllByPlayer(IntegrationTestHelper.players[0])
+		def ratingList = Rating.findAllByPlayer(integrationTestHelper.players[0])
 		assert ratingList.size() == 1
 
 		doSecondRatingUpdate()
-		ratingList = Rating.findAllByPlayer(IntegrationTestHelper.players[0])
+		ratingList = Rating.findAllByPlayer(integrationTestHelper.players[0])
 		assert ratingList.size() == 2
 		
 		// Call stored procedure that update player_stat
 	    ratingStatService.updatePlayerStatitics()
 	    
-	    checkPlayer(IntegrationTestHelper.players[0], 0)
-	    checkPlayer(IntegrationTestHelper.players[1], -500)
-	    checkPlayer(IntegrationTestHelper.players[2], 500)
-	    checkPlayer(IntegrationTestHelper.players[3], 1)
-	    
+	    // Check player rating after update 
+	    def playerRatings = [0, -500, 500, 1, 100, 1200, -3, 2]
+	    for(i in 0..7) {
+	    	checkPlayer(integrationTestHelper.players[i], playerRatings[i])
+	    }
 	    ratingStatService.updateTeamStatitics()
 	    
-	    checkTeam(IntegrationTestHelper.teams[0], -500, 2)
-	    checkTeam(IntegrationTestHelper.teams[1], 501, 1)
+	    // Check team rating and their position
+	    def teamRatings = [[-500, 4], [501, 2], [1300, 1], [-1, 3]]
+	    for(i in 0..3) {
+	    	checkTeam(integrationTestHelper.teams[i], teamRatings[i][0], teamRatings[i][1])
+	    }
+	    ratingStatService.updateLeagueStatitics()
 	}
 	 
 	 /**
@@ -55,7 +60,7 @@ class RatingUpdateTest  extends GroovyTestCase {
 		  
 		 // Check the credit of the team (credit sum of all players on team)
 		 int creditStatus = 0
-		 team.players.each { teamPlayer -> 
+		 TeamPlayer.findAllByTeam(team).each { teamPlayer -> 
 		 	def playerStat = PlayerStat.findByPlayer(teamPlayer.player)
 		 	def pointsRule = PointsRule.findByFromRatingLessThanEqualsAndToRatingGreaterThanEquals(playerStat.ratingStatus, playerStat.ratingStatus)
 		 	creditStatus += pointsRule.credit
@@ -66,17 +71,19 @@ class RatingUpdateTest  extends GroovyTestCase {
 	 
 	 private def doFirstRatingUpdate() {
 		 def ratingUpdate = integrationTestHelper.ratingUpdates[0]
-		 integrationTestHelper.doRatingUpdate(ratingUpdate, 1000, integrationTestHelper.players[0])
-		 integrationTestHelper.doRatingUpdate(ratingUpdate, 500, integrationTestHelper.players[1])
-		 integrationTestHelper.doRatingUpdate(ratingUpdate, 1500, integrationTestHelper.players[2])
-		  integrationTestHelper.doRatingUpdate(ratingUpdate, 10, integrationTestHelper.players[3])
+		 def ratings = [1000, 500, 1500, 10, 0, 300, 1563, 4568]
+		 
+		 for(i in 0..7) {
+			 integrationTestHelper.doRatingUpdate(ratingUpdate, ratings[i], integrationTestHelper.players[i])
+		 }
 	 }
 	 
 	 private def doSecondRatingUpdate() {
 		 def ratingUpdate = integrationTestHelper.ratingUpdates[1]
-		 integrationTestHelper.doRatingUpdate(ratingUpdate, 1000, integrationTestHelper.players[0])
-		 integrationTestHelper.doRatingUpdate(ratingUpdate, 0, integrationTestHelper.players[1])
-		 integrationTestHelper.doRatingUpdate(ratingUpdate, 2000, integrationTestHelper.players[2])
-		 integrationTestHelper.doRatingUpdate(ratingUpdate, 11, integrationTestHelper.players[3])
+		 def ratings = [1000, 0, 2000, 11, 100, 1500, 1560, 4570]
+		 
+		 for(i in 0..7) {
+			 integrationTestHelper.doRatingUpdate(ratingUpdate, ratings[i], integrationTestHelper.players[i])
+		 }
 	 }
 }
