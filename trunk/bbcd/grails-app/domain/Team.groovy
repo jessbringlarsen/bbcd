@@ -2,7 +2,7 @@ class Team {
 
 	static mapping = {
     	columns {
-        	email column:'name', index:'name_Idx'
+        	name column:'name', index:'name_Idx'
         }
     }
 
@@ -13,7 +13,6 @@ class Team {
     }
 	
 	static hasMany = [inleague:LeagueParticipant, players:TeamPlayer]
-	static fetchMode = [players:'eager']
 	
 	String name
     Integer credit

@@ -189,7 +189,7 @@ class RatingImportController {
     			rating.setClub(clubMap[player.getKlubXmlID()])
     		} else {
     			validReferences = false;
-    			errorList << "Klub: ${player.getKlubXmlID()}"
+    			errorList << "Klub: ${player.getKlubXmlID()} ikke fundet"
     		}
 
     		if(playerMap.containsKey(player.getXmlID())) {

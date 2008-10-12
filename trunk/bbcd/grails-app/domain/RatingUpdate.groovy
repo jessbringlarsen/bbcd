@@ -7,6 +7,10 @@ class RatingUpdate implements Comparable {
     		dateOfUpdate column:'date_of_update', index:'date_of_update_idx'
         }
     }
+	static constraints = {
+		dateOfUpdate(blank: false, unique: true)
+	}
+	
 
 	static DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT)
 

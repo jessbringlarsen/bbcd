@@ -1,25 +1,37 @@
+/**
+ * User for user account.
+ */
 class Profile {
-	static mapping = {
-    	columns {
-        	email column:'email', index:'email_Idx'
-        }
-    }
+	static transients = ['pass']
+	static hasMany = [authorities: Role]
+	static belongsTo = Role
 
-    static constraints = {
-		firstName(blank:false)
-		sirName(blank:false)
-		email(blank:false, email:true, unique:true)
-		password(blank:false)
-    }
+	/** Username */
+	String username
+	/** User Real Name*/
+	String userRealName
+	/** MD5 Password */
+	String passwd
+	/** enabled */
+	boolean enabled
 
-	String	firstName;
-	String	sirName;
-	String	email;
-	String	password;
-    Date 	lastLogin;
-    int     activated;
+	String email
+	boolean emailShow
 
-    String toString() {
-    	"${firstName} ${sirName}"
-    }
+	/** description */
+	String description = ''
+
+	/** plain password to create a MD5 password */
+	String pass = '[secret]'
+
+	static constraints = {
+		username(blank: false, unique: true)
+		userRealName(blank: false)
+		passwd(blank: false)
+		enabled()
+	}
+	
+	public String toString() {
+		return userRealName
+	}
 }

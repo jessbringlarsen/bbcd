@@ -1,4 +1,4 @@
-class PlayerController extends AuthentificationController {
+class PlayerController {
 
     def index = { redirect(action:list,params:params) }
 
