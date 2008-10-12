@@ -30,16 +30,44 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">First Name:</td>
+                            <td valign="top" class="name">Username:</td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:profile, field:'firstName')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:profile, field:'username')}</td>
                             
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Sir Name:</td>
+                            <td valign="top" class="name">User Real Name:</td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:profile, field:'sirName')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:profile, field:'userRealName')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">Passwd:</td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:profile, field:'passwd')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">Enabled:</td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:profile, field:'enabled')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">Authorities:</td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:profile, field:'authorities')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">Description:</td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:profile, field:'description')}</td>
                             
                         </tr>
                     
@@ -51,16 +79,16 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Activated:</td>
+                            <td valign="top" class="name">Email Show:</td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:profile, field:'activated')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:profile, field:'emailShow')}</td>
                             
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Last Login:</td>
+                            <td valign="top" class="name">Pass:</td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:profile, field:'lastLogin')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:profile, field:'pass')}</td>
                             
                         </tr>
                     
