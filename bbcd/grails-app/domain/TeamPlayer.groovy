@@ -13,7 +13,6 @@ class TeamPlayer {
 		team(blank:false)
 		player(unique:'team')
     }
-	static fetchMode = [player:'eager']
 	
 	Team team
 	Player player

@@ -1,0 +1,4 @@
+class AdminController {
+
+    def admin = { }
+}

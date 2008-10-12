@@ -1,5 +1,5 @@
-class ProfileController extends AuthentificationController {
-
+class ProfileController {
+    
     def index = { redirect(action:list,params:params) }
 
     // the delete, save and update actions only accept POST requests
@@ -48,14 +48,6 @@ class ProfileController extends AuthentificationController {
     def update = {
         def profile = Profile.get( params.id )
         if(profile) {
-        	
-        	/*
-        	 * Encode password if changed 
-        	 */
-        	String passwordEncoded = params.password.encodeAsPassword()
-        	if(!profile.getPassword().equals(passwordEncoded)) {
-        		params.password = passwordEncoded
-        	}
             profile.properties = params
             if(!profile.hasErrors() && profile.save()) {
                 flash.message = "Profile ${params.id} updated"
@@ -73,14 +65,13 @@ class ProfileController extends AuthentificationController {
 
     def create = {
         def profile = new Profile()
+        profile.properties = params
         return ['profile':profile]
     }
 
     def save = {
         def profile = new Profile(params)
         if(!profile.hasErrors() && profile.save()) {
-        	profile.password = profile.password.encodeAsPassword()
-        	
             flash.message = "Profile ${profile.id} created"
             redirect(action:show,id:profile.id)
         }

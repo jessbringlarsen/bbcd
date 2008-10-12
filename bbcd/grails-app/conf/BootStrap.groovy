@@ -17,6 +17,9 @@ class BootStrap {
 		integrationTestHelper.doRatingUpdate(ratingUpdate, 1000, integrationTestHelper.players[0])
 		integrationTestHelper.doRatingUpdate(ratingUpdate, 0, integrationTestHelper.players[1])
 		integrationTestHelper.doRatingUpdate(ratingUpdate, 2000, integrationTestHelper.players[2])
+		
+		// Create default rule defined in SecurityConfig
+		new Role(authority:"ROLE_USER", description:"Default user role").save()
      }
 
      def destroy = {
