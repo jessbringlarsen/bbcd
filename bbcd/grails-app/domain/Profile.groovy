@@ -30,7 +30,7 @@ class Profile {
 		passwd(blank: false)
 		enabled()
 	}
-	
+
 	public String toString() {
 		return userRealName
 	}
