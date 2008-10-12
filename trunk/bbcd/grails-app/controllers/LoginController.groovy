@@ -48,7 +48,8 @@ class LoginController {
 			render(view: 'openIdAuth')
 		}
 		else {
-			render(view: 'auth')
+			flash.message = 'Adgang ikke givet'
+			redirect(uri: '/')
 		}
 	}
 
