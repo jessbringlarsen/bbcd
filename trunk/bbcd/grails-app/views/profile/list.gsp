@@ -23,15 +23,15 @@
                         
                    	        <g:sortableColumn property="id" title="Id" />
                         
-                   	        <g:sortableColumn property="firstName" title="First Name" />
+                   	        <g:sortableColumn property="username" title="Username" />
                         
-                   	        <g:sortableColumn property="sirName" title="Sir Name" />
+                   	        <g:sortableColumn property="userRealName" title="User Real Name" />
                         
-                   	        <g:sortableColumn property="email" title="Email" />
+                   	        <g:sortableColumn property="passwd" title="Passwd" />
                         
-                   	        <g:sortableColumn property="password" title="Password" />
+                   	        <g:sortableColumn property="enabled" title="Enabled" />
                         
-                   	        <g:sortableColumn property="activated" title="Activated" />
+                   	        <g:sortableColumn property="description" title="Description" />
                         
                         </tr>
                     </thead>
@@ -41,15 +41,15 @@
                         
                             <td><g:link action="show" id="${profile.id}">${fieldValue(bean:profile, field:'id')}</g:link></td>
                         
-                            <td>${fieldValue(bean:profile, field:'firstName')}</td>
+                            <td>${fieldValue(bean:profile, field:'username')}</td>
                         
-                            <td>${fieldValue(bean:profile, field:'sirName')}</td>
+                            <td>${fieldValue(bean:profile, field:'userRealName')}</td>
                         
-                            <td>${fieldValue(bean:profile, field:'email')}</td>
+                            <td>${fieldValue(bean:profile, field:'passwd')}</td>
                         
-                            <td>${fieldValue(bean:profile, field:'password')}</td>
+                            <td>${fieldValue(bean:profile, field:'enabled')}</td>
                         
-                            <td>${fieldValue(bean:profile, field:'activated')}</td>
+                            <td>${fieldValue(bean:profile, field:'description')}</td>
                         
                         </tr>
                     </g:each>

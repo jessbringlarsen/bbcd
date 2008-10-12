@@ -30,19 +30,62 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="firstName">First Name:</label>
+                                    <label for="username">Username:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:profile,field:'firstName','errors')}">
-                                    <input type="text" id="firstName" name="firstName" value="${fieldValue(bean:profile,field:'firstName')}"/>
+                                <td valign="top" class="value ${hasErrors(bean:profile,field:'username','errors')}">
+                                    <input type="text" id="username" name="username" value="${fieldValue(bean:profile,field:'username')}"/>
                                 </td>
                             </tr> 
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="sirName">Sir Name:</label>
+                                    <label for="userRealName">User Real Name:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:profile,field:'sirName','errors')}">
-                                    <input type="text" id="sirName" name="sirName" value="${fieldValue(bean:profile,field:'sirName')}"/>
+                                <td valign="top" class="value ${hasErrors(bean:profile,field:'userRealName','errors')}">
+                                    <input type="text" id="userRealName" name="userRealName" value="${fieldValue(bean:profile,field:'userRealName')}"/>
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="passwd">Passwd:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:profile,field:'passwd','errors')}">
+                                    <input type="text" id="passwd" name="passwd" value="${fieldValue(bean:profile,field:'passwd')}"/>
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="enabled">Enabled:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:profile,field:'enabled','errors')}">
+                                    <g:checkBox name="enabled" value="${profile?.enabled}" ></g:checkBox>
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="authorities">Authorities:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:profile,field:'authorities','errors')}">
+                                    
+<ul>
+<g:each var="a" in="${profile?.authorities?}">
+    <li><g:link controller="role" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></li>
+</g:each>
+</ul>
+<g:link controller="role" params="['profile.id':profile?.id]" action="create">Add Role</g:link>
+
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="description">Description:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:profile,field:'description','errors')}">
+                                    <input type="text" id="description" name="description" value="${fieldValue(bean:profile,field:'description')}"/>
                                 </td>
                             </tr> 
                         
@@ -57,28 +100,19 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="password">Password:</label>
+                                    <label for="emailShow">Email Show:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:profile,field:'password','errors')}">
-                                    <input type="password" id="password" name="password" value="${fieldValue(bean:profile,field:'password')}"/>
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="activated">Activated:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:profile,field:'activated','errors')}">
-                                    <input type="text" id="activated" name="activated" value="${fieldValue(bean:profile,field:'activated')}" />
+                                <td valign="top" class="value ${hasErrors(bean:profile,field:'emailShow','errors')}">
+                                    <g:checkBox name="emailShow" value="${profile?.emailShow}" ></g:checkBox>
                                 </td>
                             </tr> 
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="lastLogin">Last Login:</label>
+                                    <label for="pass">Pass:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:profile,field:'lastLogin','errors')}">
-                                    <g:datePicker name="lastLogin" value="${profile?.lastLogin}" ></g:datePicker>
+                                <td valign="top" class="value ${hasErrors(bean:profile,field:'pass','errors')}">
+                                    <input type="text" name="pass" id="pass" value="${fieldValue(bean:profile,field:'pass')}" />
                                 </td>
                             </tr> 
                         
