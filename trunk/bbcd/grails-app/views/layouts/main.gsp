@@ -1,21 +1,43 @@
 <html>
     <head>
         <title><g:layoutTitle default="Grails" /></title>
-        <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'main.css')}" />
+        <link rel="stylesheet" href="${createLinkTo(dir:'js/yui/2.5.2/menu/assets',file:'menu.css')}" / >
+        <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'main.css')}" / >
+        <!-- link rel="stylesheet" href="${createLinkTo(dir:'css',file:'mainlayout.css')}" / -->
         <link rel="shortcut icon" href="${createLinkTo(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
+        
         <g:layoutHead />
-        <g:javascript library="application" />				
+        <g:javascript library="application" />
+        <g:javascript library="yui" />
+        <modalbox:modalIncludes />		
     </head>
     <body>
-        <div id="spinner" class="spinner" style="display:none;">
-            <img src="${createLinkTo(dir:'images',file:'spinner.gif')}" alt="Spinner" />
-        </div>	
-        <div class="logo">
-        	<img src="${createLinkTo(dir:'images',file:'grails_logo.jpg')}" alt="Grails" />
-        </div>	
-        <div class="pageContent">
-        	<g:layoutBody />	
-        </div>	
+    	<div id="bbcdmenuitems" class="yuimenubar yuimenubarnav"> 
+		    <div class="bd"> 
+		        <ul class="first-of-type"> 
+		            <li class="yuimenubaritem first-of-type"> 
+		                <a class="yuimenubaritemlabel" href="${createLinkTo(dir:'')}">Forside</a> 
+		            </li> 
+		            <li class="yuimenubaritem"> 
+		                <a class="yuimenubaritemlabel" href="http://shopping.yahoo.com">Shopping</a> 
+		            </li> 
+		            <li class="yuimenubaritem"> 
+		                <a class="yuimenubaritemlabel" href="http://entertainment.yahoo.com">Entertainment</a> 
+		            </li> 
+		            <li class="yuimenubaritem"> 
+		                <a class="yuimenubaritemlabel" href="#">Information</a> 
+		            </li> 
+		            <g:ifAllGranted role="ROLE_USER, ROLE_ADMIN">
+		            	<li class="yuimenubaritem"> 
+		                	<a class="yuimenubaritemlabel" href="<g:createLink controller="admin" action="admin" />">Administration</a> 
+		            	</li>
+		            </g:ifAllGranted>
+		        </ul> 
+		    </div> 
+		</div>			
+      	
+      	<g:layoutBody />
+        
         <g:isLoggedIn>
         	<div class="userDetails">
         		<h3>Velkommen <g:loggedInUserInfo field="userRealName"/></h3>
@@ -51,8 +73,14 @@
 					</form>
 					</div>
 				</div>
-				<a href="/bbcd/register/index">Opret konto</a>
+				<modalbox:createLink url="/bbcd/register/index" title="Opret konto" width="350" linkname="Opret konto" />
         	</div>
         </g:isNotLoggedIn>
     </body>	
 </html>
+
+<!-- Define main top menu  -->
+<g:javascript library="yui/2.5.2/yahoo-dom-event/yahoo-dom-event" />
+<g:javascript library="yui/2.5.2/container/container_core" />
+<g:javascript library="yui/2.5.2/menu/menu" />
+<g:javascript library="bbcd_menu" />
