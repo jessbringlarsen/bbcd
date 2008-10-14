@@ -2,15 +2,10 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="layout" content="main" />
-    <title>User Registration</title>         
   </head>
   <body>
-    <div class="nav">
-      <span class="menuButton"><a href="${createLinkTo(dir:'')}">Home</a></span>
-    </div>
     <div class="body">
-      <h1>User Registration</h1>
+      <h1>Bruger oprettelse</h1>
       <g:if test="${flash.message}">
         <div class="message">${flash.message}</div>
       </g:if>
@@ -26,7 +21,7 @@
 
               <tr class='prop'>
                 <td valign='top' class='name'>
-                  <label for='username'>Login Name:</label>
+                  <label for='username'>Login Navn:</label>
                 </td>
                 <td valign='top' 
                 	class='value ${hasErrors(bean:person,field:'username','errors')}'>
@@ -37,7 +32,7 @@
                        
               <tr class='prop'>
                 <td valign='top' class='name'>
-                  <label for='userRealName'>Full Name:</label>
+                  <label for='userRealName'>Navn:</label>
                 </td>
                 <td valign='top' 
                     class='value ${hasErrors(bean:person,field:'userRealName','errors')}'>
@@ -48,7 +43,7 @@
                        
               <tr class='prop'>
                 <td valign='top' class='name'>
-                  <label for='passwd'>Password:</label>
+                  <label for='passwd'>Kodeord:</label>
                 </td>
                 <td valign='top' 
                     class='value ${hasErrors(bean:person,field:'passwd','errors')}'>
@@ -59,7 +54,7 @@
                        
               <tr class='prop'>
                 <td valign='top' class='name'>
-                  <label for='enabled'>Confirm Password:</label>
+                  <label for='enabled'>Bekræft Kodeord:</label>
                 </td>
                 <td valign='top' 
                 	class='value ${hasErrors(bean:person,field:'passwd','errors')}'>
@@ -81,7 +76,7 @@
 
               <tr class='prop'>
                 <td valign='bottom' class='name'>
-                  <label for='code'>Enter Code: </label>
+                  <label for='code'>Indtast Kode: </label>
                 </td>
                 <td valign='top' class='name'>
                   <input type="text" name="captcha" size="8"/>
