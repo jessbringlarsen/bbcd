@@ -19,7 +19,17 @@ class BootStrap {
 		integrationTestHelper.doRatingUpdate(ratingUpdate, 2000, integrationTestHelper.players[2])
 		
 		// Create default rule defined in SecurityConfig
-		new Role(authority:"ROLE_USER", description:"Default user role").save()
+		Role roleUser = new Role(authority:"ROLE_USER", description:"Default user role").save()
+		Role roleAdmin = new Role(authority:"ROLE_ADMIN", description:"Administrator").save()
+		
+		// Create admin user: admin, password: admin
+		Profile admin = new Profile(username:"admin", 
+                passwd:"21232f297a57a5a743894a0e4a801fc3", 
+                userRealName: "admin",
+                email: "admin",
+                enabled: 1)
+                .addToAuthorities(roleAdmin)
+                .addToAuthorities(roleUser).save()
      }
 
      def destroy = {
