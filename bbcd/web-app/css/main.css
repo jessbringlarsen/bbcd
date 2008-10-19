@@ -63,16 +63,6 @@ input:focus, select:focus, textarea:focus {
 	width:80%;
 }
 
-.userDetails {
-	position:absolute;
-	right:10px;
-	top: 180px;
-	border:1px solid darkgrey;
-	background-color:lightgrey;
-	padding:10px;
-	width:170px;
-}
-
 /* NAVIGATION MENU */
 
 .nav {
