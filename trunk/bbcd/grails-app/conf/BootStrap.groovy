@@ -27,7 +27,7 @@ class BootStrap {
                 passwd:"21232f297a57a5a743894a0e4a801fc3", 
                 userRealName: "admin",
                 email: "admin",
-                enabled: 1)
+                enabled: true)
                 .addToAuthorities(roleAdmin)
                 .addToAuthorities(roleUser).save()
      }
