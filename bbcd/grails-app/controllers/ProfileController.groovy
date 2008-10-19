@@ -1,5 +1,7 @@
 class ProfileController {
     
+	def roleService
+	
     def index = { redirect(action:list,params:params) }
 
     // the delete, save and update actions only accept POST requests
@@ -41,7 +43,7 @@ class ProfileController {
             redirect(action:list)
         }
         else {
-            return [ profile : profile ]
+            return [ profile:profile, missingRoles:roleService.missingRoles(profile) ]
         }
     }
 
@@ -78,5 +80,25 @@ class ProfileController {
         else {
             render(view:'create',model:[profile:profile])
         }
+    }
+    
+	def addRole = {
+	    def profile = Profile.get( params.id )
+	    
+	    if(params.roleId != "-1") {
+	    	def role = Role.get( params.roleId )
+			profile.addToAuthorities( role )
+		}
+	    //redirect(action:edit, params:params)
+ 		render(view:'edit',model:[ profile:profile, missingRoles:roleService.missingRoles(profile) ])
+    }
+    
+    def removeRole = {
+		def profile = Profile.get( params.id )
+		def role = Role.get( params.roleId )
+		profile.removeFromAuthorities( role )
+		
+		//redirect(action:edit, params:params)
+		 render(view:'edit',model:[ profile:profile, missingRoles:roleService.missingRoles(profile) ])
     }
 }
