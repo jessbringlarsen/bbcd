@@ -104,7 +104,7 @@ class PlayerExternalBindingController {
      * Receieve a club.id and return a g:select element with players in the club.
      */
     def updatePlayers = {
-    		def param = params
+    	def param = params
 		if(params.clubId && params.clubId != "-1") {
 			def playerList = new PlayerService().getByClubMinusPlayerExternalBinding(params.clubId)
 
