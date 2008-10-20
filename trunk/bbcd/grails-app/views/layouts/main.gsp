@@ -21,13 +21,16 @@
 		<!-- Source file for the Layout Manager --> 
 		<g:javascript library="yui/2.5.2/layout/layout-beta-min" />
 
-		<!-- Define main top menu  -->
-		<!-- link rel="stylesheet" href="${createLinkTo(dir:'js/yui/2.5.2/menu/assets',file:'menu.css')}" / -->
-		<!-- g:javascript library="yui/2.5.2/yahoo-dom-event/yahoo-dom-event" / -->
-		<!-- g:javascript library="yui/2.5.2/container/container_core" /-->
-		<!-- g:javascript library="yui/2.5.2/menu/menu" /-->
-		<!-- g:javascript library="bbcd_menu" /-->
-
+		<!-- Define main menu  -->
+		<link rel="stylesheet" href="${createLinkTo(dir:'js/yui/2.5.2/menu/assets',file:'menu.css')}" />
+		<g:javascript library="yui/2.5.2/container/container_core" />
+		<g:javascript library="yui/2.5.2/menu/menu" />
+		
+		<script type="text/javascript">
+			var oMenu = new YAHOO.widget.Menu("bbcd_left_menu", { fixedcenter: false }); 
+			oMenu.render();
+		</script> 
+		
 		<!-- JSON & ajax -->		
 		<g:javascript library="yui/2.5.2/yahoo/yahoo-min" />
 		<g:javascript library="yui/2.5.2/json/json-min" />
@@ -35,6 +38,8 @@
 		<g:javascript library="main_layout" />
         
         <g:layoutHead />
+  
+        
     </head>
     <body class="yui-skin-sam"> 
     	<div id="top1">
@@ -43,14 +48,13 @@
 		<div id="bottom1">
 		    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse justo nibh, pharetra at, adipiscing ullamcorper.</p>
 		</div>
+
 		<div id="right1">
 			<g:isLoggedIn>
 		    	<p>Velkommen <g:loggedInUserInfo field="userRealName"/></p>
-        		<g:ifAllGranted role="ROLE_USER,ROLE_ADMIN">
-        			<li><a href="/bbcd/admin/admin">Admin</a></li>
-        		</g:ifAllGranted>
-        		<li><a href="/bbcd/logout/index">Logout</a></li>
+			    <g:render template="/menu/bbcdProfileMenu" />
         	</g:isLoggedIn>
+
 	        <g:isNotLoggedIn>
 	        	<div class="userDetails">
 	        		<div id='login'>
@@ -83,14 +87,17 @@
 		</div>
 		
 		<div id="left1">
-		    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse justo nibh, pharetra at, adipiscing ullamcorper.</p>
-		    <!-- SNIPPED -->
+			<g:isLoggedIn>
+				<g:render template="/menu/bbcdMainMenu" />
+			</g:isLoggedIn>
+			
+			<g:ifAllGranted role="ROLE_USER,ROLE_ADMIN">
+				<g:render template="/menu/bbcdAdminMenu" />
+			</g:ifAllGranted>
 		</div>
     	
     	<div id=center1>
       		<g:layoutBody />
       	</div>
-        
-        
     </body>	
 </html>
