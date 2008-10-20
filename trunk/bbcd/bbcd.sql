@@ -75,8 +75,8 @@ BEGIN
 	delete from team_stat where rating_update_id = ratingupdate_id;
 
 	-- Indsæt rating statistik for hold
-	insert ignore into team_stat (team_id, rating_update_id, rating_status)
-		(select tp.team_id, ratingupdate_id, sum(rating_status) from team_player tp
+	insert ignore into team_stat (version, team_id, rating_update_id, rating_status)
+		(select 0, tp.team_id, ratingupdate_id, sum(rating_status) from team_player tp
 		join player_stat ps on ps.player_id = tp.player_id
 		group by tp.team_id);
 
