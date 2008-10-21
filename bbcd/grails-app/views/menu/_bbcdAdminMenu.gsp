@@ -1,7 +1,10 @@
 	<div id="bbcd_left_menu" class="yuimenu">
 	    <div class="bd">
-	    <h6 class="first-of-type">Administrator Menu</h6> 
-	        <ul class="first-of-type">
+	    <h6 class="first-of-type">Administrator Menu</h6>
+	     	<ul class="first-of-type">
+	            <li class="yuimenuitem">
+	                <a class="yuimenuitemlabel" href="/bbcd/ratingImport/index">Import Rating Data</a>
+	            </li> 
 	            <li class="yuimenuitem">
 	                <a class="yuimenuitemlabel" href="/bbcd/tournament/index">TournamentController</a>
 	            </li>
