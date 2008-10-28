@@ -16,46 +16,9 @@
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
-            <div class="list">
-                <table>
-                    <thead>
-                        <tr>
-                        
-                   	        <g:sortableColumn property="id" title="Id" />
-                        
-                   	        <th>Team</th>
-                   	    
-                   	        <th>Rating Update</th>
-                   	    
-                   	        <g:sortableColumn property="ratingStatus" title="Rating Status" />
-                        
-                   	        <g:sortableColumn property="creditStatus" title="Credit Status" />
-                        
-                   	        <g:sortableColumn property="position" title="Position" />
-                        
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <g:each in="${teamStatList}" status="i" var="teamStat">
-                        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                        
-                            <td><g:link action="show" id="${teamStat.id}">${fieldValue(bean:teamStat, field:'id')}</g:link></td>
-                        
-                            <td>${fieldValue(bean:teamStat, field:'team')}</td>
-                        
-                            <td>${fieldValue(bean:teamStat, field:'ratingUpdate')}</td>
-                        
-                            <td>${fieldValue(bean:teamStat, field:'ratingStatus')}</td>
-                        
-                            <td>${fieldValue(bean:teamStat, field:'creditStatus')}</td>
-                        
-                            <td>${fieldValue(bean:teamStat, field:'position')}</td>
-                        
-                        </tr>
-                    </g:each>
-                    </tbody>
-                </table>
-            </div>
+
+            <g:render template="/teamStat/teamStatList" />
+
             <div class="paginateButtons">
                 <g:paginate total="${TeamStat.count()}" />
             </div>
