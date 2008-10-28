@@ -7,6 +7,7 @@ class TeamStatController {
 
     def list = {
         if(!params.max) params.max = 10
+        if(!params.sort) params.sort = "position"
         [ teamStatList: TeamStat.list( params ) ]
     }
 
