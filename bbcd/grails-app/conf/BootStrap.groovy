@@ -1,9 +1,11 @@
-
+import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes
+import org.springframework.context.*
 
 class BootStrap {
 
      def init = { servletContext ->
-
+        ApplicationContext ctx = servletContext.getAttribute(GrailsApplicationAttributes.APPLICATION_CONTEXT)
+        RatingStatService ratingService = (RatingStatService) ctx.getBean("ratingStatService")
      	new PointsRuleData()
      	
 		IntegrationTestHelper integrationTestHelper = new IntegrationTestHelper() 
@@ -17,6 +19,11 @@ class BootStrap {
 		integrationTestHelper.doRatingUpdate(ratingUpdate, 1000, integrationTestHelper.players[0])
 		integrationTestHelper.doRatingUpdate(ratingUpdate, 0, integrationTestHelper.players[1])
 		integrationTestHelper.doRatingUpdate(ratingUpdate, 2000, integrationTestHelper.players[2])
+
+        ratingService.updatePlayerStatitics()
+        ratingService.updateTeamStatitics()
+        ratingService.updateLeagueStatitics()
+
 		
 		// Create default rule defined in SecurityConfig
 		Role roleUser = new Role(authority:"ROLE_USER", description:"Default user role").save()
