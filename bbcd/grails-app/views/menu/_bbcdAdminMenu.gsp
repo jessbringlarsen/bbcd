@@ -1,5 +1,4 @@
-	<div id="bbcd_left_menu" class="yuimenu">
-	    <div class="bd">
+
 	    <h6 class="first-of-type">Administrator Menu</h6>
 	     	<ul class="first-of-type">
 	            <li class="yuimenuitem">
@@ -21,5 +20,3 @@
 	                <a class="yuimenuitemlabel" href="/bbcd/leagueStat/index">LeagueStatController</a>
 	            </li>
 	        </ul>            
-	    </div>
-	</div>
