@@ -7,11 +7,27 @@ CREATE VIEW `rating_update_h` AS
 	limit 1;
 
 DROP VIEW IF EXISTS `player_v`;
-CREATE VIEW `player_v` AS
-	select p.*
-	from player p
-	join rating r on p.id = r.player_id
-	where r.rating_update_id = (select * from rating_update_h);
+create view player_v as
+select
+      s.id,
+      s.date_of_birth,
+      s.gender,
+      s.name,
+      r.rating,
+      lcp.price,
+			k.name as club_name,
+      k.short_name as club_name_short,
+      pst.no_of_times_bought,
+      pst.no_of_times_sold
+		from
+			player s
+			join rating r on s.id = r.player_id and r.rating_update_id in (select id from rating_update_h)
+			join club k on r.club_id = k.id
+			join license_class lk on lk.min_rating <= r.rating and r.rating <= lk.max_rating
+				and lk.gender = s.gender
+      join license_class_price lcp on lcp.id = lk.price_id
+      left outer join player_stat_tournament pst on pst.player_id = s.id
+        and pst.tournament_id = 1;
 
 delimiter|
 
