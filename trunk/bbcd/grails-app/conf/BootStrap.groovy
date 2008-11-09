@@ -7,6 +7,8 @@ class BootStrap {
         ApplicationContext ctx = servletContext.getAttribute(GrailsApplicationAttributes.APPLICATION_CONTEXT)
         RatingStatService ratingService = (RatingStatService) ctx.getBean("ratingStatService")
      	new PointsRuleData()
+
+        BootStrapData.loadLicenseClassData()
      	
 		IntegrationTestHelper integrationTestHelper = new IntegrationTestHelper() 
 				
