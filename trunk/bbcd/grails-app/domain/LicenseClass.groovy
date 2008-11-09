@@ -6,6 +6,7 @@ class LicenseClass {
 		minRating(blank: false)
 		maxRating(blank: false)
 		price(blank: false)
+        age(blank: false)
 	}
 
     String className
@@ -13,6 +14,7 @@ class LicenseClass {
 	Integer minRating
 	Integer maxRating
     LicenseClassPrice price
+    LicenseClassAge age
 
     String toString() {
         return "${className} - ${gender}"
