@@ -1,103 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
         <title><g:layoutTitle default="Grails" /></title>
         <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'main.css')}" />
+        <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'layout.css')}" />
+        <link rel="stylesheet" href="${createLinkTo(dir:'js/yui/2.6.0/grids',file:'grids-min.css')}" />
+        <link rel="stylesheet" href="${createLinkTo(dir:'js/yui/2.6.0/menu/assets/skins/sam',file:'menu.css')}" />
         <g:javascript library="application" />
-        <g:javascript library="yui" />
-        <modalbox:modalIncludes />		
-        
-        <!-- Skin CSS files resize.css must load before layout.css --> 
-		<link rel="stylesheet" href="${createLinkTo(dir:'js/yui/2.5.2/assets/skins/sam',file:'resize.css')}" / >
-		<link rel="stylesheet" href="${createLinkTo(dir:'js/yui/2.5.2/assets/skins/sam',file:'layout.css')}" / >
-		
-		<!-- Utility Dependencies --> 
-		<g:javascript library="yui/2.5.2/yahoo-dom-event/yahoo-dom-event" />
-		<g:javascript library="yui/2.5.2/dragdrop/dragdrop-min" />
-		<g:javascript library="yui/2.5.2/element/element-beta-min" />
-		
-		<!-- Optional Animation Support--> 
-		<!--g:javascript library="yui/2.5.2/animation/animation-min" /-->
-		
-		<!-- Source file for the Layout Manager --> 
-		<g:javascript library="yui/2.5.2/layout/layout-beta-min" />
-
-		<!-- Define main menu  -->
-		<link rel="stylesheet" href="${createLinkTo(dir:'js/yui/2.5.2/menu/assets',file:'menu.css')}" />
-		<g:javascript library="yui/2.5.2/container/container_core" />
-		<g:javascript library="yui/2.5.2/menu/menu" />
-		
-		<script type="text/javascript">
-			var oMenu = new YAHOO.widget.Menu("bbcd_left_menu", { fixedcenter: false }); 
-			oMenu.render();
-		</script> 
-		
-		<!-- JSON & ajax -->		
-		<g:javascript library="yui/2.5.2/yahoo/yahoo-min" />
-		<g:javascript library="yui/2.5.2/json/json-min" />
-		
-		<g:javascript library="main_layout" />
-        
+        <modalbox:modalIncludes />
         <g:layoutHead />
-  
-        
     </head>
-    <body class="yui-skin-sam"> 
-    	<div id="top1">
-		    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse justo nibh, pharetra at, adipiscing ullamcorper.</p>
-		</div>
-		<div id="bottom1">
-		    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse justo nibh, pharetra at, adipiscing ullamcorper.</p>
-		</div>
+    <body class="yui-skin-sam">
+        <div id="doc2" class="yui-t1">
+            <div id="hd">
+                <img src='${createLinkTo(dir:'images',file:'bbcdheader.jpg') }'/>.
+            </div>
+                <div id="bd">
+                    <div id="yui-main">
+                        <div class="yui-b">
+                            <div class="yui-ge">
+                                <div class="yui-u first">
+                                    <g:isNotLoggedIn>
+                                        <g:render template="/layouts/welcome" />
+                                    </g:isNotLoggedIn>
+                                    <g:isLoggedIn>
+                                        <g:layoutBody />
+                                    </g:isLoggedIn>
 
-		<div id="right1">
-			<g:isLoggedIn>
-		    	<p>Velkommen <g:loggedInUserInfo field="userRealName"/></p>
-			    <g:render template="/menu/bbcdProfileMenu" />
-        	</g:isLoggedIn>
+                                </div>
+                                <div class="yui-u">
 
-	        <g:isNotLoggedIn>
-	        	<div class="userDetails">
-	        		<div id='login'>
-						<div class='inner'>
-						<g:if test='${flash.message}'>
-							<div class='errors'>${flash.message}</div>
-						</g:if>
-						<form action='${request.contextPath}/j_spring_security_check' method='POST' id='loginForm' class='cssform'>
-							<p>
-								<label for='j_username'>Brugernavn</label><br/>
-								<input type='text' class='text_' name='j_username' id='j_username'  />
-							</p>
-							<p>
-								<label for='j_password'>Kodeord</label><br/>
-								<input type='password' class='text_' name='j_password' id='j_password' />
-							</p>
-							<p>
-								<label for='remember_me'>Husk mig</label>
-								<input type='checkbox' style="height:12px;" id='remember_me' name='_spring_security_remember_me'>
-							</p>
-							<p>
-								<input type='submit' value='Login' />
-							</p>
-						</form>
-						</div>
-					</div>
-					<modalbox:createLink url="/bbcd/register/index" title="Opret konto" width="350" linkname="Opret konto" />
-	        	</div>
-	        </g:isNotLoggedIn>
-		</div>
-		
-		<div id="left1">
-			<g:isLoggedIn>
-				<g:render template="/menu/bbcdMainMenu" />
-			</g:isLoggedIn>
-			
-			<g:ifAllGranted role="ROLE_USER,ROLE_ADMIN">
-				<g:render template="/menu/bbcdAdminMenu" />
-			</g:ifAllGranted>
-		</div>
-    	
-    	<div id=center1>
-      		<g:layoutBody />
-      	</div>
-    </body>	
+                                   <g:isLoggedIn>
+                                        <h6>Velkommen <g:loggedInUserInfo field="userRealName"/></h6>
+                                          <div id="bbcd_right_menu" class="yuimenu">
+                                            <div class="bd">
+                                                <g:render template="/menu/bbcdProfileMenu" />
+
+                                                <g:ifAllGranted role="ROLE_USER,ROLE_ADMIN">
+                                                    <g:render template="/menu/bbcdAdminMenu" />
+                                                </g:ifAllGranted>
+                                            </div>
+                                          </div>
+                                    </g:isLoggedIn>
+                                    <g:isNotLoggedIn>
+                                        <g:render template="/menu/bbcdLoginMenu" />
+                                    </g:isNotLoggedIn>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="yui-b">
+
+                        <g:isLoggedIn>
+                            <g:render template="/menu/bbcdMainMenu" />
+                        </g:isLoggedIn>
+
+                    </div>
+
+                </div>
+                <div id="ft">
+                    <!-- footer -->
+                </div>
+       </div>
+  </body>
 </html>
