@@ -1,21 +1,22 @@
-import dk.brondbybordtennisclub.bbcd.domain.exceptions.PlayerDateParseException
-import java.text.DateFormat
-import java.text.ParseException
-
 /**
  * Domain class based on a view to present the latest info
  * about players.
  *
+ * This domainclass is based on view.
+ *
  */
 class PlayerView {
+    // Make domain class searchable (searchable plugin)
+    static searchable = true
 
-	String	dateOfBirth;
+    String  dateOfBirth;
 	String	gender;
 	String	name;
+    Integer age;
 	String  rating;
+    String  className;
     Integer price;
     String  clubName;
-    String  clubNameShort;
     Integer noOfTimesBought;
     Integer noOfTimesSold;
 }
