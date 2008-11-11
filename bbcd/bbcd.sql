@@ -1,4 +1,4 @@
--- id for seneste ratingopdatering
+-- gets the latest rating update
 DROP VIEW IF EXISTS `rating_update_h`;
 CREATE VIEW `rating_update_h` AS
 	select id
@@ -6,28 +6,48 @@ CREATE VIEW `rating_update_h` AS
 	order by date_of_update desc
 	limit 1;
 
-DROP VIEW IF EXISTS `player_v`;
-create view player_v as
+-- View displaying the age of a player
+DROP VIEW IF EXISTS `player_age`;
+CREATE VIEW `player_age` AS
+	select
+		p.id,
+		format((SELECT DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(p.date_of_birth, '%Y') - (DATE_FORMAT(NOW(), '00-%m-%d') < DATE_FORMAT(p.date_of_birth, '00-%m-%d'))), 0) AS age
+	from
+		player p;
+
+-- A domain class is based on this view.
+-- Grails automaticly creates a table that we drop here.
+DROP TABLE IF EXISTS `player_view`;
+DROP VIEW IF EXISTS `player_view`;
+create view player_view as
 select
-      s.id,
-      s.date_of_birth,
-      s.gender,
-      s.name,
-      r.rating,
-      lcp.price,
-			k.name as club_name,
-      k.short_name as club_name_short,
-      pst.no_of_times_bought,
-      pst.no_of_times_sold
-		from
-			player s
-			join rating r on s.id = r.player_id and r.rating_update_id in (select id from rating_update_h)
-			join club k on r.club_id = k.id
-			join license_class lk on lk.min_rating <= r.rating and r.rating <= lk.max_rating
-				and lk.gender = s.gender
-      join license_class_price lcp on lcp.id = lk.price_id
-      left outer join player_stat_tournament pst on pst.player_id = s.id
-        and pst.tournament_id = 1;
+    s.id,
+    s.version,
+    DATE_FORMAT(s.date_of_birth, '%d-%m-%Y') as date_of_birth,
+    s.gender,
+    s.name,
+    pa.age,
+    r.rating,
+    lcp.price,
+    k.name as club_name,
+    k.short_name as club_name_short,
+    pst.no_of_times_bought,
+    pst.no_of_times_sold
+from
+    player s
+    join player_age pa on pa.id = s.id
+    join rating r on s.id = r.player_id
+        and r.rating_update_id = (select id from rating_update_h)
+    join club k on r.club_id = k.id
+    join license_class lk on lk.gender = s.gender
+        and lk.min_rating <= r.rating
+        and lk.max_rating >= r.rating
+    join license_class_price lcp on lcp.id = lk.price_id
+    join license_class_age lca on lca.id = lk.age_id
+        and lca.age_from <= pa.age
+        and lca.age_to >= pa.age
+    left outer join player_stat_tournament pst on pst.player_id = s.id
+        and pst.tournament_id = (select id from tournament where is_current_tournament = 1);
 
 delimiter|
 
