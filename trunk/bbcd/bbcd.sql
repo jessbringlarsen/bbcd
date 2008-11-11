@@ -28,9 +28,9 @@ select
     s.name,
     pa.age,
     r.rating,
+    lk.class_name,
     lcp.price,
     k.name as club_name,
-    k.short_name as club_name_short,
     pst.no_of_times_bought,
     pst.no_of_times_sold
 from
