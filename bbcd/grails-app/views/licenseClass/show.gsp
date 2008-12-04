@@ -64,6 +64,13 @@
                             
                         </tr>
                     
+                        <tr class="prop">
+                            <td valign="top" class="name">Age:</td>
+                            
+                            <td valign="top" class="value"><g:link controller="licenseClassAge" action="show" id="${licenseClass?.age?.id}">${licenseClass?.age?.encodeAsHTML()}</g:link></td>
+                            
+                        </tr>
+                    
                     </tbody>
                 </table>
             </div>
