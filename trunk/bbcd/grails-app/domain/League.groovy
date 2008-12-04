@@ -12,7 +12,7 @@ class League {
     }
 	
 	static belongsTo = Tournament
-	static hasMany = [teams:LeagueParticipant]
+	static hasMany = [teams:Team]
 	
 	static transients = [ "privateLeague" ] 
 	
