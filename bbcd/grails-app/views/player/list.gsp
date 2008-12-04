@@ -23,16 +23,16 @@
                         
                    	        <g:sortableColumn property="id" title="Id" />
                         
-                   	        <g:sortableColumn property="dateOfBirth" title="Date Of Birth" />
-                        
-                   	        <g:sortableColumn property="gender" title="Gender" />
-                        
-                   	        <g:sortableColumn property="name" title="Name" />
+                   	        <g:sortableColumn property="xmlId" title="Xml Id" />
                         
                    	        <g:sortableColumn property="playerNo" title="Player No" />
                         
-                   	        <th>Ratings</th>
-                   	    
+                   	        <g:sortableColumn property="name" title="Name" />
+                        
+                   	        <g:sortableColumn property="gender" title="Gender" />
+                        
+                   	        <g:sortableColumn property="dateOfBirth" title="Date Of Birth" />
+                        
                         </tr>
                     </thead>
                     <tbody>
@@ -41,15 +41,15 @@
                         
                             <td><g:link action="show" id="${player.id}">${fieldValue(bean:player, field:'id')}</g:link></td>
                         
-                            <td>${fieldValue(bean:player, field:'dateOfBirth')}</td>
-                        
-                            <td>${fieldValue(bean:player, field:'gender')}</td>
-                        
-                            <td>${fieldValue(bean:player, field:'name')}</td>
+                            <td>${fieldValue(bean:player, field:'xmlId')}</td>
                         
                             <td>${fieldValue(bean:player, field:'playerNo')}</td>
                         
-                            <td>${fieldValue(bean:player, field:'ratings')}</td>
+                            <td>${fieldValue(bean:player, field:'name')}</td>
+                        
+                            <td>${fieldValue(bean:player, field:'gender')}</td>
+                        
+                            <td>${fieldValue(bean:player, field:'dateOfBirth')}</td>
                         
                         </tr>
                     </g:each>
