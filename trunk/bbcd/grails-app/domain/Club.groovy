@@ -1,4 +1,5 @@
 class Club {
+    
 	static mapping = {
     	columns {
     		xmlId column:'xml_id', index:'xml_id_idx'
