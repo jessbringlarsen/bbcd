@@ -88,10 +88,10 @@
                                     
 <ul>
 <g:each var="p" in="${team?.players?}">
-    <li><g:link controller="teamPlayer" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
+    <li><g:link controller="player" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
 </g:each>
 </ul>
-<g:link controller="teamPlayer" params="['team.id':team?.id]" action="create">Add TeamPlayer</g:link>
+<g:link controller="player" params="['team.id':team?.id]" action="create">Add Player</g:link>
 
                                 </td>
                             </tr> 

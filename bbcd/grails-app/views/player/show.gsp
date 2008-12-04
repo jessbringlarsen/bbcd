@@ -30,16 +30,16 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Date Of Birth:</td>
+                            <td valign="top" class="name">Xml Id:</td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:player, field:'dateOfBirth')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:player, field:'xmlId')}</td>
                             
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Gender:</td>
+                            <td valign="top" class="name">Player No:</td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:player, field:'gender')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:player, field:'playerNo')}</td>
                             
                         </tr>
                     
@@ -51,9 +51,16 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Player No:</td>
+                            <td valign="top" class="name">Gender:</td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:player, field:'playerNo')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:player, field:'gender')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">Date Of Birth:</td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:player, field:'dateOfBirth')}</td>
                             
                         </tr>
                     
@@ -71,22 +78,9 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Team Participant:</td>
+                            <td valign="top" class="name">Teams:</td>
                             
-                            <td  valign="top" style="text-align:left;" class="value">
-                                <ul>
-                                <g:each var="t" in="${player.teamParticipant}">
-                                    <li><g:link controller="teamPlayer" action="show" id="${t.id}">${t?.encodeAsHTML()}</g:link></li>
-                                </g:each>
-                                </ul>
-                            </td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Xml Id:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:player, field:'xmlId')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:player, field:'teams')}</td>
                             
                         </tr>
                     
