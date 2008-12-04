@@ -1,6 +1,7 @@
-class PlayerTests extends GroovyTestCase {
+class PlayerTests extends BaseBBCGroovyTestCase {
 
-    void testSomething() {
-
+    void testNoOfPlayers() {
+        def players = Player.list()
+        assert players.size() == 8
     }
 }

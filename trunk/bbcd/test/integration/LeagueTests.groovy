@@ -1,6 +1,14 @@
-class LeagueTests extends GroovyTestCase {
+class LeagueTests extends BaseBBCGroovyTestCase {
 
-    void testSomething() {
+   void testNoOfLeauges() {
+        def leagues = League.list()
+        assert leagues.size() == 2
+    }
 
+    void testNoOfTeamPlayers() {
+        def leagues = League.list()
+        leagues.each {
+            assert it.teams.size() == 2
+        }
     }
 }
