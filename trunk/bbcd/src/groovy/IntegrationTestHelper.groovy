@@ -12,8 +12,17 @@ class IntegrationTestHelper {
 	def ratingUpdates = []
 	def teams = []
 	def leagues = []
-	
-	def IntegrationTestHelper() {
+	private static IntegrationTestHelper instance;
+
+    public static synchronized IntegrationTestHelper getInstance() {
+        if(instance != null) {
+            return instance;
+        }
+        instance = new IntegrationTestHelper();
+        return instance;
+    }
+
+	private IntegrationTestHelper() {
 		new PointsRuleData()
 		
 		idraetsforbund = new Idraetsforbund(name: 'ØBTU', xmlId: '0001').save()
@@ -21,8 +30,6 @@ class IntegrationTestHelper {
      	new Idraetsforbund(name:"FBTU", xmlId:"0003").save()
      	new Idraetsforbund(name:"BBTU", xmlId:"0004").save()
 		club = new Club(xmlId: '00001', name: 'BBC', shortName: 'BBC', union: idraetsforbund).save()
-
-		createPlayers()
 		
 		ratingUpdates[0] = new RatingUpdate(dateOfUpdate: new Date(100, 1, 1)).save()
 		ratingUpdates[1] = new RatingUpdate(dateOfUpdate: new Date(100, 1, 2)).save()
@@ -33,6 +40,8 @@ class IntegrationTestHelper {
                  email:"jess@bringlarsen.dk",
                  passwd:"hemmeligt").save()
 
+
+		createPlayers()
 		createTeams()
      	createTeamPlayers()
      	createLeagues()
@@ -64,17 +73,17 @@ class IntegrationTestHelper {
 	}
 	
 	private def createTeamPlayers() {
-		new TeamPlayer(team:teams[0], player:players[0]).save()
-     	new TeamPlayer(team:teams[0], player:players[1]).save()
+		teams[0].addToPlayers(players[0])
+     	teams[0].addToPlayers(players[1])
 		
-     	new TeamPlayer(team:teams[1], player:players[2]).save()
-     	new TeamPlayer(team:teams[1], player:players[3]).save()
+     	teams[1].addToPlayers(players[2])
+     	teams[1].addToPlayers(players[3])
      	
-     	new TeamPlayer(team:teams[2], player:players[4]).save()
-     	new TeamPlayer(team:teams[2], player:players[5]).save()
+     	teams[2].addToPlayers(players[4])
+     	teams[2].addToPlayers(players[5])
 		
-     	new TeamPlayer(team:teams[3], player:players[6]).save()
-     	new TeamPlayer(team:teams[3], player:players[7]).save()
+     	teams[3].addToPlayers(players[6])
+     	teams[3].addToPlayers(players[7])
 	}
 	
 	private def createLeagues() { 
@@ -98,9 +107,9 @@ class IntegrationTestHelper {
 	}
 	
 	private def createLeagueParticipants() {
-		new LeagueParticipant(league: leagues[0], team: teams[0]).save()
-		new LeagueParticipant(league: leagues[0], team: teams[1]).save()
-		new LeagueParticipant(league: leagues[1], team: teams[2]).save()
-		new LeagueParticipant(league: leagues[1], team: teams[3]).save()
+		leagues[0].addToTeams(teams[0])
+		leagues[0].addToTeams(teams[1])
+		leagues[1].addToTeams(teams[2])
+		leagues[1].addToTeams(teams[3])
 	}
 }
