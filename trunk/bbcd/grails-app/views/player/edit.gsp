@@ -30,19 +30,19 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="dateOfBirth">Date Of Birth:</label>
+                                    <label for="xmlId">Xml Id:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:player,field:'dateOfBirth','errors')}">
-                                    <g:datePicker name="dateOfBirth" value="${player?.dateOfBirth}" ></g:datePicker>
+                                <td valign="top" class="value ${hasErrors(bean:player,field:'xmlId','errors')}">
+                                    <input type="text" id="xmlId" name="xmlId" value="${fieldValue(bean:player,field:'xmlId')}"/>
                                 </td>
                             </tr> 
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="gender">Gender:</label>
+                                    <label for="playerNo">Player No:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:player,field:'gender','errors')}">
-                                    <input type="text" id="gender" name="gender" value="${fieldValue(bean:player,field:'gender')}"/>
+                                <td valign="top" class="value ${hasErrors(bean:player,field:'playerNo','errors')}">
+                                    <input type="text" id="playerNo" name="playerNo" value="${fieldValue(bean:player,field:'playerNo')}"/>
                                 </td>
                             </tr> 
                         
@@ -57,10 +57,19 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="playerNo">Player No:</label>
+                                    <label for="gender">Gender:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:player,field:'playerNo','errors')}">
-                                    <input type="text" id="playerNo" name="playerNo" value="${fieldValue(bean:player,field:'playerNo')}"/>
+                                <td valign="top" class="value ${hasErrors(bean:player,field:'gender','errors')}">
+                                    <input type="text" id="gender" name="gender" value="${fieldValue(bean:player,field:'gender')}"/>
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="dateOfBirth">Date Of Birth:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:player,field:'dateOfBirth','errors')}">
+                                    <g:datePicker name="dateOfBirth" value="${player?.dateOfBirth}" ></g:datePicker>
                                 </td>
                             </tr> 
                         
@@ -82,26 +91,17 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="teamParticipant">Team Participant:</label>
+                                    <label for="teams">Teams:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:player,field:'teamParticipant','errors')}">
+                                <td valign="top" class="value ${hasErrors(bean:player,field:'teams','errors')}">
                                     
 <ul>
-<g:each var="t" in="${player?.teamParticipant?}">
-    <li><g:link controller="teamPlayer" action="show" id="${t.id}">${t?.encodeAsHTML()}</g:link></li>
+<g:each var="t" in="${player?.teams?}">
+    <li><g:link controller="team" action="show" id="${t.id}">${t?.encodeAsHTML()}</g:link></li>
 </g:each>
 </ul>
-<g:link controller="teamPlayer" params="['player.id':player?.id]" action="create">Add TeamPlayer</g:link>
+<g:link controller="team" params="['player.id':player?.id]" action="create">Add Team</g:link>
 
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="xmlId">Xml Id:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:player,field:'xmlId','errors')}">
-                                    <input type="text" id="xmlId" name="xmlId" value="${fieldValue(bean:player,field:'xmlId')}"/>
                                 </td>
                             </tr> 
                         

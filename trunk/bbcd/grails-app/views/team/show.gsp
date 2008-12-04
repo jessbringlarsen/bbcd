@@ -73,13 +73,7 @@
                         <tr class="prop">
                             <td valign="top" class="name">Players:</td>
                             
-                            <td  valign="top" style="text-align:left;" class="value">
-                                <ul>
-                                <g:each var="p" in="${team.players}">
-                                    <li><g:link controller="teamPlayer" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
-                                </g:each>
-                                </ul>
-                            </td>
+                            <td valign="top" class="value">${fieldValue(bean:team, field:'players')}</td>
                             
                         </tr>
                     
