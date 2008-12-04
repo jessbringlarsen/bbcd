@@ -29,7 +29,7 @@
 
                             <g:sortableColumn property="rating" title="Rating" />
                         
-                   	        <g:sortableColumn property="age" title="Alder" />
+                   	        <g:sortableColumn property="price" title="Pris" />
 
                             <th></th>
                         
@@ -47,7 +47,7 @@
 
                             <td>${fieldValue(bean:playerView, field:'rating')}</td>
                         
-                            <td>${fieldValue(bean:playerView, field:'age')}</td>
+                            <td>${fieldValue(bean:playerView, field:'price')}</td>
 
                             <td><g:link action="show" id="${playerView.id}">Køb</g:link></td>
                         
