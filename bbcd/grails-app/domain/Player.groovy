@@ -18,7 +18,7 @@ class Player {
 		dateOfBirth(blank: false)
 	}
 
-	static hasMany = [ratings:Rating, teamParticipant:TeamPlayer]
+	static hasMany = [ratings:Rating, teams:Team]
 
 	String		xmlId;
 	String		playerNo;
