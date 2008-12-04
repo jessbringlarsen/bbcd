@@ -71,6 +71,15 @@
                                 </td>
                             </tr> 
                         
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="age">Age:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:licenseClass,field:'age','errors')}">
+                                    <g:select optionKey="id" from="${LicenseClassAge.list()}" name="age.id" value="${licenseClass?.age?.id}" ></g:select>
+                                </td>
+                            </tr> 
+                        
                         </tbody>
                     </table>
                 </div>
