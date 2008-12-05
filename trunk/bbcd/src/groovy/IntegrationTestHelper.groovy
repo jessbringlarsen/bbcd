@@ -12,13 +12,9 @@ class IntegrationTestHelper {
 	def ratingUpdates = []
 	def teams = []
 	def leagues = []
-	private static IntegrationTestHelper instance;
+	private static final IntegrationTestHelper instance = new IntegrationTestHelper()
 
-    public static synchronized IntegrationTestHelper getInstance() {
-        if(instance != null) {
-            return instance;
-        }
-        instance = new IntegrationTestHelper();
+    static IntegrationTestHelper getInstance() {
         return instance;
     }
 
