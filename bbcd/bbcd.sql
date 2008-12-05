@@ -110,18 +110,20 @@ BEGIN
 	-- Drop alle eventuelle eksisterende statistik rækker for det aktuelle ratingopdatering
 	delete from team_stat where rating_update_id = ratingupdate_id;
 
+    -- note the grails bug on the player_team table players_id <> teams_id
+
 	-- Indsæt rating statistik for hold
 	insert ignore into team_stat (version, team_id, rating_update_id, rating_status)
-		(select 0, tp.team_id, ratingupdate_id, sum(rating_status) from team_player tp
-		join player_stat ps on ps.player_id = tp.player_id
-		group by tp.team_id);
+		(select 0, tp.players_id, ratingupdate_id, sum(rating_status) from player_team tp
+		join player_stat ps on ps.player_id = tp.teams_id
+		group by tp.players_id);
 
 	-- Indsæt point statistik for hold		
 	update team_stat ts set ts.credit_status = 
 		(SELECT sum(ps.credit_status)
-			FROM team_player tp
-				JOIN player_stat ps ON ps.player_id = tp.player_id
-			WHERE tp.team_id = ts.team_id
+			FROM player_team tp
+				JOIN player_stat ps ON ps.player_id = tp.teams_id
+			WHERE tp.players_id = ts.team_id
 				AND ps.rating_update_id=ratingupdate_id);
 
 	-- Opdater placering for holdene
