@@ -7,7 +7,7 @@ class IntegrationTestHelper {
 	
 	def profile 
 	def idraetsforbund
-	def club
+	def club = []
 	def players = []
 	def ratingUpdates = []
 	def teams = []
@@ -20,12 +20,14 @@ class IntegrationTestHelper {
 
 	private IntegrationTestHelper() {
 		new PointsRuleData()
+        BootStrapData.loadLicenseClassData()
 		
 		idraetsforbund = new Idraetsforbund(name: 'ØBTU', xmlId: '0001').save()
 		new Idraetsforbund(name:"JBTU", xmlId:"0002").save()
      	new Idraetsforbund(name:"FBTU", xmlId:"0003").save()
      	new Idraetsforbund(name:"BBTU", xmlId:"0004").save()
-		club = new Club(xmlId: '00001', name: 'BBC', shortName: 'BBC', union: idraetsforbund).save()
+		club[0] = new Club(xmlId: '00001', name: 'BBC', shortName: 'BBC', union: idraetsforbund).save()
+        club[1] = new Club(xmlId: '00002', name: 'BBC-2', shortName: 'BBC-2', union: idraetsforbund).save()
 		
 		ratingUpdates[0] = new RatingUpdate(dateOfUpdate: new Date(100, 1, 1)).save()
 		ratingUpdates[1] = new RatingUpdate(dateOfUpdate: new Date(100, 1, 2)).save()
@@ -45,7 +47,7 @@ class IntegrationTestHelper {
 		
 	}
 	
-	def doRatingUpdate(def ratingUpdate, def rating, def player) {
+	def doRatingUpdate(def ratingUpdate, def rating, def player, def club) {
         new Rating(ratingUpdate: ratingUpdate, rating: rating, player: player, club: club).save();
 	}
 	
@@ -56,9 +58,31 @@ class IntegrationTestHelper {
                 name: "player-${i}",
                 gender: '1',
                 dateOfBirth: new Date()).save()
+                doRatingUpdate(ratingUpdates[0], 500, players[i], club[0])
+                doRatingUpdate(ratingUpdates[1], 1000, players[i], club[0])
 		}
+
+        for(i in 8..16) {
+			players[i] = new Player(xmlId: "0000${i}",
+                playerNo: "${i}",
+                name: "player-${i}",
+                gender: '1',
+                dateOfBirth: new Date()).save()
+                doRatingUpdate(ratingUpdates[0], 600, players[i], club[1])
+                doRatingUpdate(ratingUpdates[1], 625, players[i], club[1])
+		}
+       /*
+        def ratingUpdate = integrationTestHelper.ratingUpdates[0]
+		integrationTestHelper.doRatingUpdate(ratingUpdate, 1000, integrationTestHelper.players[0])
+		integrationTestHelper.doRatingUpdate(ratingUpdate, 500, integrationTestHelper.players[1])
+		integrationTestHelper.doRatingUpdate(ratingUpdate, 1500, integrationTestHelper.players[2])
+
+		ratingUpdate = integrationTestHelper.ratingUpdates[1]
+		integrationTestHelper.doRatingUpdate(ratingUpdate, 1000, integrationTestHelper.players[0])
+		integrationTestHelper.doRatingUpdate(ratingUpdate, 0, integrationTestHelper.players[1])
+		integrationTestHelper.doRatingUpdate(ratingUpdate, 2000, integrationTestHelper.players[2])*/
 	}
-	
+
 	private def createTeams() {
 		for(i in 0..3) {
 			teams[i] = new Team(name:"Team-${i}",
