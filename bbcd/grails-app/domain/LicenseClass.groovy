@@ -17,7 +17,7 @@ class LicenseClass {
     LicenseClassAge age
 
     String toString() {
-        return "${className} - ${gender}"
+        return "${className}"
     }
 
 }
