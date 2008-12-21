@@ -14,8 +14,10 @@ class PlayerView {
 	String	name;
     Integer age;
 	String  rating;
+    Integer classId;
     String  className;
     Integer price;
+    Integer clubId;
     String  clubName;
     Integer noOfTimesBought;
     Integer noOfTimesSold;
