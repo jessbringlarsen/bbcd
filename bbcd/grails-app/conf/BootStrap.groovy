@@ -6,22 +6,9 @@ class BootStrap {
      def init = { servletContext ->
         ApplicationContext ctx = servletContext.getAttribute(GrailsApplicationAttributes.APPLICATION_CONTEXT)
         RatingStatService ratingService = (RatingStatService) ctx.getBean("ratingStatService")
-     	new PointsRuleData()
 
-        BootStrapData.loadLicenseClassData()
-     	
-		IntegrationTestHelper integrationTestHelper = new IntegrationTestHelper() 
+		IntegrationTestHelper integrationTestHelper = IntegrationTestHelper.getInstance();
 				
-     	def ratingUpdate = integrationTestHelper.ratingUpdates[0]
-		integrationTestHelper.doRatingUpdate(ratingUpdate, 1000, integrationTestHelper.players[0])
-		integrationTestHelper.doRatingUpdate(ratingUpdate, 500, integrationTestHelper.players[1])
-		integrationTestHelper.doRatingUpdate(ratingUpdate, 1500, integrationTestHelper.players[2])
-
-		ratingUpdate = integrationTestHelper.ratingUpdates[1]
-		integrationTestHelper.doRatingUpdate(ratingUpdate, 1000, integrationTestHelper.players[0])
-		integrationTestHelper.doRatingUpdate(ratingUpdate, 0, integrationTestHelper.players[1])
-		integrationTestHelper.doRatingUpdate(ratingUpdate, 2000, integrationTestHelper.players[2])
-
         ratingService.updatePlayerStatitics()
         ratingService.updateTeamStatitics()
         ratingService.updateLeagueStatitics()
@@ -39,6 +26,11 @@ class BootStrap {
                 enabled: true)
                 .addToAuthorities(roleAdmin)
                 .addToAuthorities(roleUser).save()
+
+        // Index PlayerView so it can be retrieved via the SearchablePlugin
+        PlayerView.index()
+        //SearchableService searchableService = (SearchableService) ctx.getBean("searchableService")
+        //searchableService.rebuildSpellingSuggestions(fork: true)
      }
 
      def destroy = {
