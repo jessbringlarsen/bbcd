@@ -1,6 +1,7 @@
 import grails.converters.JSON
 
 class TeamCreatorController {
+    def playerViewService
     
     def index = { redirect(action:editTeam,params:params) }
 
@@ -9,44 +10,40 @@ class TeamCreatorController {
 
     def editTeam = {
         def playerViewList = PlayerView.list()
-        [playerViewList:PlayerView.list()]
+        [playerViewList:playerViewList, clubList:Club.list()]
     }
 
-    def dataTableDataAsJSON = {
-        def list = []
-        def result = PlayerView.findById(params.id)
-        response.setHeader("Cache-Control", "no-store")
-        result.each {
-            list << [
-                    id: it.id,
-                    name: it.name,
-                    age: it.age,
-            ]
-        }
-         def data = [
-            totalRecords: list.size(),
-            results: list
-        ]
-        render result as JSON
+    def addPlayerToTeam = {
+        def team = Team.get(1)
+        def playerToAdd = Player.findById(params.id)
+        team.addToPlayers(playerToAdd)
+
+        def result = playerViewService.getByTeam(1)
+        render(view:"boughtPlayerTable", model: [ playerViewList:result ])
     }
 
-     def allPlayers = {
-        def list = []
-        def result = PlayerView.list()
-        response.setHeader("Cache-Control", "no-store")
-        result.each {
-            list << [
-                    id: it.id,
-                    name: it.name,
-                    age: it.age,
-            ]
-        }
-         def data = [
-            totalRecords: list.size(),
-            results: list
-        ]
-        render data as JSON
+     def removePlayerFromTeam = {
+        def team = Team.get(1)
+        def playerToAdd = Player.findById(params.id)
+        team.removeFromPlayers(playerToAdd)
+
+        def result = playerViewService.getByTeam(1)
+        render(view:"boughtPlayerTable", model: [ playerViewList:result ])
     }
+
+    def getTeamPlayers = {
+        def result = playerViewService.getByTeam(1)
+        render(view:"boughtPlayerTable", model: [ playerViewList:result ])
+    }
+
+    def getAvailablePlayers = {
+        Integer clubId = Integer.valueOf(params.clubId)
+        Integer classId = Integer.valueOf(params.classId)
+
+        def result = PlayerView.findAllByClubIdAndClassId(clubId, classId)
+        render(view:"availablePlayerTable", model: [ playerViewList:result ])
+    }
+
 
    /* def teamCreateFlow = {
        teamName {
