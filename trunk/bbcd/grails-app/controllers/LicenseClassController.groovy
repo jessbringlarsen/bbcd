@@ -79,4 +79,11 @@ class LicenseClassController {
             render(view:'create',model:[licenseClass:licenseClass])
         }
     }
+
+    def getByGender = {
+        def genderId = params.id
+
+        def licenseClassList = LicenseClass.findAllByGender(genderId)
+        render(view:'licenseClassAjaxResponse', model:[licenseClassList:licenseClassList])
+    }
 }
