@@ -4,4 +4,11 @@ class PlayerTests extends BaseBBCGroovyTestCase {
         def players = Player.list()
         assert players.size() == 8
     }
+
+     void testNoOfPlayerTeams() {
+        def players = Player.list()
+        players.each {
+            assert it.getTeams().size() == 2
+        }
+    }
 }
