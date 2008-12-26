@@ -1,4 +1,8 @@
+-- Grails automaticly creates a table that we drop here.
+-- Thats why tables and view are dropped before create.
+
 -- gets the latest rating update
+DROP TABLE IF EXISTS `rating_update_h`;
 DROP VIEW IF EXISTS `rating_update_h`;
 CREATE VIEW `rating_update_h` AS
 	select id
@@ -7,6 +11,7 @@ CREATE VIEW `rating_update_h` AS
 	limit 1;
 
 -- View displaying the age of a player
+DROP TABLE IF EXISTS `player_age`;
 DROP VIEW IF EXISTS `player_age`;
 CREATE VIEW `player_age` AS
 	select
@@ -16,7 +21,6 @@ CREATE VIEW `player_age` AS
 		player p;
 
 -- A domain class is based on this view.
--- Grails automaticly creates a table that we drop here.
 DROP TABLE IF EXISTS `player_view`;
 DROP VIEW IF EXISTS `player_view`;
 create view player_view as
@@ -28,8 +32,10 @@ select
     s.name,
     pa.age,
     r.rating,
+    lk.id as class_id,
     lk.class_name,
     lcp.price,
+    k.id as club_id,
     k.name as club_name,
     pst.no_of_times_bought,
     pst.no_of_times_sold
@@ -47,7 +53,7 @@ from
         and lca.age_from <= pa.age
         and lca.age_to >= pa.age
     left outer join player_stat_tournament pst on pst.player_id = s.id
-        and pst.tournament_id = (select id from tournament where is_current_tournament = 1);
+        and pst.tournament_id = (select id from tournament where is_current_tournament = '1');
 
 delimiter|
 
