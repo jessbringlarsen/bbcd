@@ -40,7 +40,7 @@ class TeamCreatorController {
         Integer clubId = Integer.valueOf(params.clubId)
         Integer classId = Integer.valueOf(params.classId)
 
-        def result = PlayerView.findAllByClubIdAndClassId(clubId, classId)
+        def result = playerViewService.findAllByClubIdAndClassIdNotInTeam(clubId, classId, 1L)
         render(view:"availablePlayerTable", model: [ playerViewList:result ])
     }
 
