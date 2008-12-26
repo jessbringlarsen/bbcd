@@ -17,8 +17,11 @@
            <td>${fieldValue(bean:playerView, field:'className')}</td>
            <td>${fieldValue(bean:playerView, field:'rating')}</td>
            <td>${fieldValue(bean:playerView, field:'price')}</td>
-           <td><button id="btnSellPlayer-${playerView.id}" name="btnSellPlayer-${playerView.id}" type="button" onclick="javascript: this.disabled=true; sellplayer(${playerView.id});" >Sælg</button></td>
-        </tr>
+           <td><button id="btnSellPlayer-${playerView.id}" 
+                    name="btnSellPlayer-${playerView.id}"
+                    type="button"
+                    onclick="javascript: this.disabled=true; sellplayer(${playerView.id});" >Sælg</button></td>
+            </tr>
     </g:each>
     </tbody>
 </table>
