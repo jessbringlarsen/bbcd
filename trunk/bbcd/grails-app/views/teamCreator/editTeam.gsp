@@ -6,7 +6,6 @@
         <title>Opret Hold</title>
         <!--begin custom header content for this example-->
 
-
     <script type="text/javascript">
 
       function updateDiv(url, div) {
@@ -16,6 +15,13 @@
               $(div).update(transport.responseText);
             }
           });
+      };
+
+      function getAvailablePlayers(clubId) {
+         var clubId = $('selectClubList').getValue();
+         var classId = $('licenseClassList').getValue();
+
+          updateDiv('/bbcd/teamCreator/getAvailablePlayers?clubId='+clubId+'&classId='+classId, 'availablePlayersDiv');
       };
 
       function updatelicenseclass(genderId) {
@@ -28,15 +34,12 @@
 
       function buyplayer(id) {
           updateDiv('/bbcd/teamCreator/addPlayerToTeam?id=' + id, 'playersBoughtDiv');
+          getAvailablePlayers();
       };
 
       function sellplayer(id) {
           updateDiv('/bbcd/teamCreator/removePlayerFromTeam?id=' + id, 'playersBoughtDiv');
-      };
-
-      function getAvailablePlayers(clubId) {
-          var classId = $('licenseClassList').getValue();
-          updateDiv('/bbcd/teamCreator/getAvailablePlayers?clubId='+clubId+'&classId='+classId, 'availablePlayersDiv');
+          getAvailablePlayers();
       };
 
       initBoughtPlayerTable();
@@ -44,6 +47,8 @@
       getAvailablePlayers();
 
     </script>
+
+   
     </head>
     <body class="yui-skin-sam">
         <div class="body">
@@ -58,9 +63,9 @@
               </select>
               
               <div id="licenseClassDiv"></div>
-              <g:select optionKey="id" 
+              <g:select id="selectClubList"
+                optionKey="id"
                 from="${clubList}"
-                name="clubList"
                 value="${name}"
                 onChange="getAvailablePlayers(this.value);">
               </g:select>
