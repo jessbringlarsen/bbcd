@@ -2,5 +2,6 @@
     optionKey="id"
     from="${licenseClassList}"
     name="licenseClassList"
-    value="${className}" >
+    value="${className}"
+    onChange="javascript: licenseClassListChanged(this.value);">
 </g:select>
