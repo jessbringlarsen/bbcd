@@ -1,4 +1,3 @@
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -6,73 +5,45 @@
         <title>Opret Hold</title>
         <!--begin custom header content for this example-->
 
-    <script type="text/javascript">
+        <g:javascript src="teamCreator.js" />
 
-      function updateDiv(url, div) {
-        new Ajax.Request(url, {
-            method: 'get',
-            onSuccess: function(transport) {
-              $(div).update(transport.responseText);
-            }
-          });
-      };
-
-      function getAvailablePlayers(clubId) {
-         var clubId = $('selectClubList').getValue();
-         var classId = $('licenseClassList').getValue();
-
-          updateDiv('/bbcd/teamCreator/getAvailablePlayers?clubId='+clubId+'&classId='+classId, 'availablePlayersDiv');
-      };
-
-      function updatelicenseclass(genderId) {
-        updateDiv('/bbcd/licenseClass/getByGender?id=' + genderId, 'licenseClassDiv');
-      };
-
-      function initBoughtPlayerTable() {
-         updateDiv('/bbcd/teamCreator/getTeamPlayers', 'playersBoughtDiv');
-      };
-
-      function buyplayer(id) {
-          updateDiv('/bbcd/teamCreator/addPlayerToTeam?id=' + id, 'playersBoughtDiv');
-          getAvailablePlayers();
-      };
-
-      function sellplayer(id) {
-          updateDiv('/bbcd/teamCreator/removePlayerFromTeam?id=' + id, 'playersBoughtDiv');
-          getAvailablePlayers();
-      };
-
-      initBoughtPlayerTable();
-      updatelicenseclass(1);
-      getAvailablePlayers();
-
-    </script>
-
-   
     </head>
     <body class="yui-skin-sam">
         <div class="body">
             <h1>Hold Oprettelse</h1>
             <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
+                <div class="message">${flash.message}</div>
             </g:if>
-            <g:form action="teamCreate">
-             <select name="gender" onchange="updatelicenseclass(this.value);">
-                <option value="1" selected="selected">Dame</option>
-                <option value="0">Herre</option>
-              </select>
-              
-              <div id="licenseClassDiv"></div>
-              <g:select id="selectClubList"
-                optionKey="id"
-                from="${clubList}"
-                value="${name}"
-                onChange="getAvailablePlayers(this.value);">
-              </g:select>
 
-              <div id="availablePlayersDiv"></div>
-              <div id="playersBoughtDiv"></div>
-             </g:form>
-         </div>
+            <g:form action="teamCreate">
+                <div id="playersBoughtDiv" style="float:left;width:40%;"></div>
+
+                <div id="playersAvailableDiv" style="float:right;width:40%;">
+                    <div id="genderDiv">
+                        <select name="gender" onchange="updatelicenseclass(this.value);">
+                            <option value="1" selected="selected">Dame</option>
+                            <option value="0">Herre</option>
+                        </select>
+                    </div>
+
+                    <div id="licenseClassDiv"></div>
+                    <div id="clubDiv">
+                        <g:select id="clubList"
+                                  optionKey="id"
+                                  from="${clubList}"
+                                  value="${name}"
+                                  onChange="getAvailablePlayers(this.value);"
+                                  noSelection="['-1':'Vælg klub...']">
+                        </g:select>
+                    </div>
+                    <div id="searchDiv">
+                        <g:textField id="tfSearchField" name="tfSearchField" size="25"/>
+                        <input type="button" value="Søg" onclick="javascript: searchPlayer($(tfSearchField).getValue());")/>
+                    </div>
+
+                    <div id="availablePlayersDiv"></div>
+                </div>
+            </g:form>
+        </div>
     </body>
 </html>
