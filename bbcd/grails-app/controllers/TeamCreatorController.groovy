@@ -2,6 +2,7 @@ import grails.converters.JSON
 
 class TeamCreatorController {
     def playerViewService
+    def searchableService
     
     def index = { redirect(action:editTeam,params:params) }
 
@@ -42,6 +43,13 @@ class TeamCreatorController {
 
         def result = playerViewService.findAllByClubIdAndClassIdNotInTeam(clubId, classId, 1L)
         render(view:"availablePlayerTable", model: [ playerViewList:result ])
+    }
+
+    def searchPlayer = {
+        String searchString = params.searchString
+
+        def result = PlayerView.search(searchString,  [offset: 0, max: 20])
+        render(view:"availablePlayerTable", model: [ playerViewList:result.results ])
     }
 
 

@@ -7,7 +7,9 @@
  */
 class PlayerView {
     // Make domain class searchable (searchable plugin)
-    static searchable = true
+    static searchable = {
+        name spellCheck: "include"
+    }
 
     String  dateOfBirth;
 	String	gender;
