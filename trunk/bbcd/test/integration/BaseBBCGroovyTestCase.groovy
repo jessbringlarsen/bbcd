@@ -4,8 +4,10 @@
  */
 class BaseBBCGroovyTestCase extends GroovyTestCase {
 
+    def testHelper
+
     protected void setUp() throws java.lang.Exception {
-        IntegrationTestHelper.getInstance()
+        testHelper = IntegrationTestHelper.getInstance()
     }
 
     void testDummy() {

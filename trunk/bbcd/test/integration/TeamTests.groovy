@@ -2,13 +2,13 @@ class TeamTests extends BaseBBCGroovyTestCase {
 
     void testNoOfTeams() {
         def teams = Team.list()
-        assert teams.size() == 4
+        assert teams.size() == testHelper.getTotalNumberOfTeams()
     }
 
     void testNoOfTeamPlayers() {
         def teams = Team.list()
         teams.each {
-            assert it.players.size() == 2
+            assert it.getPlayers().size() == 2
         }
     }
 }
