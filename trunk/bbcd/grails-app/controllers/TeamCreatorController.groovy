@@ -48,7 +48,9 @@ class TeamCreatorController {
     def searchPlayer = {
         String searchString = params.searchString
 
-        def result = PlayerView.search(searchString,  [offset: 0, max: 20])
+        def result = PlayerView.search{
+             fuzzy('name', searchString)
+        }
         render(view:"availablePlayerTable", model: [ playerViewList:result.results ])
     }
 
