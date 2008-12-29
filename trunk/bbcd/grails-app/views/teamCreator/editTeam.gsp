@@ -4,9 +4,6 @@
         <meta name="layout" content="main" />
         <title>Opret Hold</title>
         <!--begin custom header content for this example-->
-
-        <g:javascript src="teamCreator.js" />
-
     </head>
     <body class="yui-skin-sam">
         <div class="body">
@@ -36,6 +33,15 @@
                                   noSelection="['-1':'Vælg klub...']">
                         </g:select>
                     </div>
+                    <div id="priceDiv">
+                          <g:select id="priceList"
+                                  optionKey="id"
+                                  from="${priceList}"
+                                  value="${price}"
+                                  onChange="getAvailablePlayers(this.value);"
+                                  noSelection="['-1':'Vælg pris...']">
+                          </g:select>
+                    </div>
                     <div id="searchDiv">
                         <g:textField id="tfSearchField" name="tfSearchField" size="25"/>
                         <input type="button" value="Søg" onclick="javascript: searchPlayer($(tfSearchField).getValue());")/>
@@ -45,5 +51,8 @@
                 </div>
             </g:form>
         </div>
+
+    <g:javascript src="teamCreator.js" />
+
     </body>
 </html>
