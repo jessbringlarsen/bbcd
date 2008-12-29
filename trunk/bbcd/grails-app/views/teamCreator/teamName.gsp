@@ -10,19 +10,30 @@
         <div class="body">
             <h1>Hold Oprettelse</h1>
             <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
+                <div class="message">${flash.message}</div>
             </g:if>
-            <g:form action="teamCreate">
-                
+             <g:hasErrors bean="${team}">
+            <div class="errors">
+                <g:renderErrors bean="${team}" as="list" />
+            </div>
+            </g:hasErrors>
+            <g:form action="createTeam">
+               <table>
                <tr class="prop">
                     <td valign="top" class="name">
-                        <label for="teamName">Name:</label>
+                        <label for="teamName">Angiv hold navn:</label>
                     </td>
                     <td valign="top">
-                        <input type="text" id="teamName" name="teamName"/>
+                        <input type="text" id="teamName" name="teamName" value="${fieldValue(bean:team,field:'name')}" />
                     </td>
                 </tr>
-                <g:submitButton name="getTeamName" value="Næste" />
+                 <tr class="prop">
+                     <td></td>
+                    <td>
+                        <g:submitButton name="getTeamName" value="Næste" />
+                    </td>
+                </tr>
+                </table>
              </g:form>
          </div>
     </body>
