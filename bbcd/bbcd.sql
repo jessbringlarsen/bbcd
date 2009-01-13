@@ -55,9 +55,9 @@ from
     left outer join player_stat_tournament pst on pst.player_id = s.id
         and pst.tournament_id = (select id from tournament where is_current_tournament = '1');
 
-delimiter|
+delimiter $$
 
-drop procedure if exists updatePlayerRatingStat|
+drop procedure if exists updatePlayerRatingStat $$
 create procedure updatePlayerRatingStat()
 LANGUAGE SQL
 MODIFIES SQL DATA
@@ -98,9 +98,9 @@ BEGIN
 	 WHERE sp.from_rating <= ss.rating_status AND sp.to_rating >= ss.rating_status)
 	 WHERE ss.rating_update_id = ratingupdateid;
 
-END|
+END$$
 
-drop procedure if exists updateTeamRatingStat|
+drop procedure if exists updateTeamRatingStat $$
 create procedure updateTeamRatingStat()
 LANGUAGE SQL
 MODIFIES SQL DATA
@@ -136,9 +136,9 @@ BEGIN
 	update team_stat sh set sh.position =
    		(select @rownum:=@rownum+1 position from (select @rownum:=0) r)
 		where sh.rating_update_id = ratingupdate_id order by sh.rating_status desc;
-END|
+END$$
 
-drop procedure if exists updateLeagueRatingStat|
+drop procedure if exists updateLeagueRatingStat $$
 create procedure updateLeagueRatingStat()
 LANGUAGE SQL
 MODIFIES SQL DATA
@@ -164,4 +164,4 @@ BEGIN
 	update league_stat ls set ls.position =
    		(select @rownum:=@rownum+1 placering from (select @rownum:=0) r)
 		where ls.rating_update_id = ratingupdate_id order by ls.rating_status desc;
-END|
+END$$
