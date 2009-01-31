@@ -13,6 +13,8 @@ class BootStrap {
         ratingService.updateTeamStatitics()
         ratingService.updateLeagueStatitics()
 
+        // Initialize settings
+        SettingsFactory.initialize();
 		
 		// Create default rule defined in SecurityConfig
 		Role roleUser = new Role(authority:"ROLE_USER", description:"Default user role").save()
@@ -28,9 +30,11 @@ class BootStrap {
                 .addToAuthorities(roleUser).save()
 
         // Index PlayerView so it can be retrieved via the SearchablePlugin
-        PlayerView.index()
-        //SearchableService searchableService = (SearchableService) ctx.getBean("searchableService")
-        //searchableService.rebuildSpellingSuggestions(fork: true)
+        Thread.start {
+            PlayerView.index()
+            SearchableService searchableService = (SearchableService) ctx.getBean("searchableService")
+            searchableService.rebuildSpellingSuggestions(fork: true)
+        }
      }
 
      def destroy = {
