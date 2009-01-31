@@ -1,7 +1,0 @@
-<plugin name='ofchart' version='0.5'>
-  <resources>
-    <resource>DataSource</resource>
-    <resource>UrlMappings</resource>
-    <resource>GraphTagLib</resource>
-  </resources>
-</plugin>
