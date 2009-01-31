@@ -21,6 +21,7 @@
       // Show available licensclasses
       function updatelicenseclass(genderId) {
         updateDiv('/bbcd/licenseClass/getByGender?id=' + genderId, 'licenseClassDiv');
+        getAvailablePlayers();
       };
 
       // Show players the player have bought
@@ -54,5 +55,3 @@
 
       initBoughtPlayerTable();
       updatelicenseclass(1);
-
-

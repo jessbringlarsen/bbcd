@@ -23,13 +23,13 @@
                 	body: 'right1', 
                 	animate: false 
                 },
-               /* { position: 'bottom', 
+                { position: 'bottom', 
                 	header: 'Bottom', 
                 	height: 100, 
                 	resize: true, 
                 	body: 'bottom1', 
                 	gutter: '5px', 
-                	collapse: true },*/
+                	collapse: true },
                 { position: 'left', 
                 	width: 175, 
                 	header: 'Menu',
