@@ -5,6 +5,40 @@
     </condition>
     <property name="grails" value="grails" />
 
+    <!-- ================================= 
+          target: install-plugins    
+         ================================= -->
+    <target name="install-plugins" description="--> Retrieves and install the needed plugins for the application">
+		<exec executable="${grails}" failonerror="true">
+			<arg value="install-plugin settings 1.0"/>
+		</exec>
+        <exec executable="${grails}" failonerror="true">
+			<arg value="install-plugin acegi 0.3"/>
+		</exec>
+         <exec executable="${grails}" failonerror="true">
+			<arg value="install-plugin searchable 0.5"/>
+		</exec>
+         <exec executable="${grails}" failonerror="true">
+			<arg value="install-plugin  yui 2.6.0"/>
+		</exec>
+         <exec executable="${grails}" failonerror="true">
+			<arg value="install-plugin modalbox 0.3"/>
+		</exec>
+         <exec executable="${grails}" failonerror="true">
+			<arg value="install-plugin bubbling 1.5.0"/>
+		</exec>
+         <exec executable="${grails}" failonerror="true">
+			<arg value="install-plugin grails-ui 1.0"/>
+		</exec>
+         <exec executable="${grails}" failonerror="true">
+			<arg value="install-plugin ofchart 0.5"/>
+		</exec>
+        <echo message="" />
+        <echo message="Husk at overskrive GraphTagLib.groovy i ofchart plugin folderen med GraphTagLib.groovy-patched-ofchart-0.5 i plugins-patch folderen" />
+        <echo message="Udfør herefter grails clean compile" />
+        <echo message="Husk at tilføje /plugins, /web-app/plugins, /web-app/js/yui og /web-app/js/yui-cms til subversion ignore" />
+    </target>
+
 	<!-- ================================= 
           target: clean              
          ================================= -->
