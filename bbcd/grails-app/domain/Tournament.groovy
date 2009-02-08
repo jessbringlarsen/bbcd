@@ -4,7 +4,7 @@
 class Tournament {
 	 static mapping = {
     	columns {
-        	email column:'name', index:'name_Idx'
+        	name column:'name', index:'name_Idx'
         }
 	 }
 
