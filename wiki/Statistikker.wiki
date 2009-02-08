@@ -20,10 +20,10 @@ Statistikker listet i prioriteret orden
  * Mest solgte spillere
 
  * Liga administration
- ** Opret (privat/offentlig
- ** Joine åbne ligaer
- ** Søge efter liganavn, admin
- ** Vise eksisterende ligaer
+  * Opret (privat/offentlig
+  * Joine åbne ligaer
+  * Søge efter liganavn, admin
+  * Vise eksisterende ligaer
 
 
 Statistik og fremsøgning af spillere til "research":
