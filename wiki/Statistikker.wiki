@@ -1,12 +1,14 @@
-#summary Ideer til ny funktionalitet i bbcd
+#summary Ideer til ny funktionalitet og opgaver i bbcd
 
 = Introduction =
 
-Beskriver ideer til ny funktionalitet i bbcd.
+Beskriver ideer til ny funktionalitet og opgaver i bbcd.
 
 
 = Details =
 
+ * Layout af forsiden og "profil" forsiden.
+ * Hold administration
 
 Statistikker listet i prioriteret orden
 
@@ -17,5 +19,12 @@ Statistikker listet i prioriteret orden
  * Mest handlede spillere
  * Mest solgte spillere
 
+ * Liga administration
+ ** Opret (privat/offentlig
+ ** Joine åbne ligaer
+ ** Søge efter liganavn, admin
+ ** Vise eksisterende ligaer
+
+
 Statistik og fremsøgning af spillere til "research":
- * Det skal være muligt at fremsøge spillere og se deres rating frem/tilbage gang
+ * Det skal være muligt at fremsøge spillere og se deres rating frem/tilbage-gang
