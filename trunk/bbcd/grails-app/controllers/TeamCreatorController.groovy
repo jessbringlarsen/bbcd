@@ -34,19 +34,27 @@ class TeamCreatorController {
     def editTeam = {
         def playerViewList = PlayerView.list()
         def licenceClassPriceList = LicenseClassPrice.list()
+
         [playerViewList:playerViewList, clubList:Club.list(), priceList:licenceClassPriceList]
     }
 
     def addPlayerToTeam = {
         def team = Team.get(session.teamId)
-        def playerToAdd = Player.findById(params.id)
-        team.addToPlayers(playerToAdd)
+        def teamSize = team.getPlayers().size()
+        def teamMaxSize = SettingsFactory.getTeamMaxSize()
 
+        def msg = ""
+        if(teamSize < teamMaxSize) {
+            def playerToAdd = Player.findById(params.id)
+            team.addToPlayers(playerToAdd)
+        } else {
+           msg = "Der må max være ${teamMaxSize} spillere på et hold"
+        }
         def result = playerViewService.getByTeam(session.teamId)
-        render(view:"boughtPlayerTable", model: [ playerViewList:result ])
+        render(view:"boughtPlayerTable", model: [ playerViewList:result, message:msg ])
     }
 
-     def removePlayerFromTeam = {
+    def removePlayerFromTeam = {
         def team = Team.get(session.teamId)
         def playerToAdd = Player.findById(params.id)
         team.removeFromPlayers(playerToAdd)
