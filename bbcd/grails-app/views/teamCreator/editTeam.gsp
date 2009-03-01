@@ -3,9 +3,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
         <title>Opret Hold</title>
-        <!--begin custom header content for this example-->
     </head>
-    <body class="yui-skin-sam">
+    <body>
         <div class="body">
             <h1>Hold Oprettelse</h1>
             <g:if test="${flash.message}">
@@ -17,7 +16,7 @@
 
                 <div id="playersAvailableDiv" style="float:right;width:40%;">
                     <div id="genderDiv">
-                        <select name="gender" onchange="updatelicenseclass(this.value);">
+                        <select name="gender" onchange="javascript: updatelicenseclass(this.value);">
                             <option value="1" selected="selected">Dame</option>
                             <option value="0">Herre</option>
                         </select>
@@ -29,7 +28,7 @@
                                   optionKey="id"
                                   from="${clubList}"
                                   value="${name}"
-                                  onChange="getAvailablePlayers(this.value);"
+                                  onChange="javascript: getAvailablePlayers(this.value);"
                                   noSelection="['-1':'Vælg klub...']">
                         </g:select>
                     </div>
@@ -38,7 +37,7 @@
                                   optionKey="id"
                                   from="${priceList}"
                                   value="${price}"
-                                  onChange="getAvailablePlayers(this.value);"
+                                  onChange="javascript: getAvailablePlayers(this.value);"
                                   noSelection="['-1':'Vælg pris...']">
                           </g:select>
                     </div>
@@ -51,8 +50,6 @@
                 </div>
             </g:form>
         </div>
-
-    <g:javascript src="teamCreator.js" />
-
+      <g:javascript src="teamCreator.js" />
     </body>
 </html>

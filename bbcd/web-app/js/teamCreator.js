@@ -1,8 +1,10 @@
+    // Generic function to use if a div needs to be updated.
     function updateDiv(url, div) {
         new Ajax.Request(url, {
-            method: 'get',
             onSuccess: function(transport) {
-              $(div).update(transport.responseText);
+                if(transport.responseText.length != 0) {
+                    $(div).update(transport.responseText);
+                } 
             }
           });
       };
@@ -20,8 +22,14 @@
 
       // Show available licensclasses
       function updatelicenseclass(genderId) {
-        updateDiv('/bbcd/licenseClass/getByGender?id=' + genderId, 'licenseClassDiv');
-        getAvailablePlayers();
+         new Ajax.Request('/bbcd/licenseClass/getByGender?id=' + genderId, {
+            onSuccess: function(transport) {
+                if(transport.responseText.length != 0) {
+                    $('licenseClassDiv').update(transport.responseText);
+                    getAvailablePlayers();
+                }
+            }
+          });
       };
 
       // Show players the player have bought
@@ -29,19 +37,28 @@
          updateDiv('/bbcd/teamCreator/getTeamPlayers', 'playersBoughtDiv');
       };
 
-      function buyplayer(id) {
-          updateDiv('/bbcd/teamCreator/addPlayerToTeam?id=' + id, 'playersBoughtDiv');
+      function buyplayer(id, btn) {
+         new Ajax.Request('/bbcd/teamCreator/addPlayerToTeam?id=' + id, {
+            onSuccess: function(transport) {
+                if(transport.responseText.length != 0) {
+                    $('playersBoughtDiv').update(transport.responseText);
+                    getAvailablePlayers();
+                } else {
+                    btn.disabled=false;
+                }
+            }
+          });
       };
 
       function sellplayer(id) {
-          updateDiv('/bbcd/teamCreator/removePlayerFromTeam?id=' + id, 'playersBoughtDiv');
-          var btn = $('btnBuyPlayer-'+id);
-
-          if(btn != null) {
-            btn.disabled=false;
-          } else {
-              getAvailablePlayers();
-          }
+            new Ajax.Request('/bbcd/teamCreator/removePlayerFromTeam?id=' + id, {
+            onSuccess: function(transport) {
+                if(transport.responseText.length != 0) {
+                    $('playersBoughtDiv').update(transport.responseText);
+                    getAvailablePlayers();
+                }
+            }
+          });
       };
 
       // Fired when a new licenseclass was selected
@@ -52,6 +69,7 @@
       function searchPlayer(searchString) {
          updateDiv('/bbcd/teamCreator/searchPlayer?searchString=' + searchString, 'availablePlayersDiv');
       };
+
 
       initBoughtPlayerTable();
       updatelicenseclass(1);
