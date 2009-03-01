@@ -10,7 +10,7 @@ class SettingsFactory {
 
     // When first initialized save all settings to the db.
     private SettingsFactory() {
-        new Setting(code:teamMaxSize, type:"Integer", value:"7").save();
+        new Setting(code:teamMaxSize, type:"integer", value:"7").save();
     }
 
     public static synchronized void initialize() {
