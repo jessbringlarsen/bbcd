@@ -1,0 +1,1 @@
+Manager like game for DK based tabletennis players.
